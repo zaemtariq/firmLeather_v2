@@ -1,0 +1,791 @@
+let accessories = [
+  {
+    id: 4101,
+    productCode: "GG-LB-MID-01",
+    title: "MIDNIGHT",
+    category: "accessories",
+    description: "Experience elegance and durability with this AAA premium leather belt. Sleek black finish with refined stitching makes it perfect for formal and casual wear.",
+    longDescription: "Midnight Leather Belt is crafted from premium leather, combining elegance, durability, and comfort. Ideal for both formal and casual attire.",
+    feature: [
+      "100% Premium Leather: Luxurious texture and finish",
+      "Durable & Comfortable: Soft yet long-lasting leather",
+      "Adjustable Fit: Multiple holes for customized sizing",
+      "Elegant Stitching: Adds style and strength",
+      "Moisture-Resistant Lining: Comfortable in any condition"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/1Midnight-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4102,
+    productCode: "GG-LB-CBL-02",
+    title: "CLASSIC BLACK",
+    category: "accessories",
+    description: "Timeless style meets premium craftsmanship. Perfect for office wear or special events.",
+    longDescription: "Classic Black Leather Belt is the epitome of sophistication, made from 100% premium leather. Elegant stitching ensures durability and style for any formal outfit.",
+    feature: [
+      "100% Premium Leather: Smooth, high-quality material",
+      "Comfort & Longevity: Soft yet resilient leather",
+      "Custom Fit: Adjustable with precision-cut holes",
+      "Elegant Stitching: Reinforces durability and style",
+      "Moisture-Resistant Lining: All-day comfort"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/2ClassiceBlack-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4103,
+    productCode: "GG-LB-C06-03",
+    title: "CLASSIC 0601",
+    category: "accessories",
+    description: "Perfect blend of traditional design and modern craftsmanship. Designed for men who value elegance and versatility.",
+    longDescription: "Classic 0601 Leather Belt combines traditional design with modern craftsmanship for a versatile, stylish, and durable accessory.",
+    feature: [
+      "Premium Leather: Rich, long-lasting texture",
+      "Soft & Durable: Comfort without compromising strength",
+      "Adjustable Fit: Customizable sizing options",
+      "Precision Stitching: Stylish and strong",
+      "Moisture-Resistant Lining: Keeps you dry and comfortable"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/3Classic0601-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4104,
+    productCode: "GG-LB-CBR-04",
+    title: "CLASSIC BROWN",
+    category: "accessories",
+    description: "A versatile brown belt that pairs with casual and semi-formal outfits. Premium leather ensures elegance with every wear.",
+    longDescription: "Classic Brown Leather Belt offers premium quality leather, elegant stitching, and adjustable fit for style and comfort.",
+    feature: [
+      "100% Premium Leather: Smooth and durable",
+      "Comfort & Longevity: Soft feel for everyday wear",
+      "Adjustable Fit: Multiple holes for perfect sizing",
+      "Elegant Stitching: Strength and style combined",
+      "Moisture-Resistant Lining: Reliable in any condition"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Brown",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/5ClassicBrown-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4105,
+    productCode: "GG-LB-SCC-05",
+    title: "STITCH CRAFT CLASSIC",
+    category: "accessories",
+    description: "Designed with meticulous stitching, this belt delivers a sophisticated look while maintaining durability for long-term wear.",
+    longDescription: "Stitch Craft Classic Leather Belt combines elegant decorative stitching with premium leather to create a stylish and durable accessory.",
+    feature: [
+      "Premium Leather: Soft and high-quality",
+      "Durable & Comfortable: Perfect balance of comfort and strength",
+      "Customizable Fit: Easily adjustable",
+      "Decorative Stitching: Adds elegance",
+      "Moisture-Resistant Lining: Keeps the belt in pristine condition"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Brown",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/6StitchCraftClassic-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4106,
+    productCode: "GG-LB-ES-06",
+    title: "ESSENTIAL STRAP",
+    category: "accessories",
+    description: "A minimalistic belt designed for daily wear. Premium leather and sleek buckle make it perfect for casual and business casual outfits.",
+    longDescription: "Essential Strap Leather Belt offers a clean, minimalist design crafted from premium leather for comfort and durability in daily use.",
+    feature: [
+      "100% Premium Leather: Smooth, high-quality finish",
+      "Durable & Comfortable: Ideal for regular use",
+      "Adjustable Fit: Multiple holes for a perfect fit",
+      "Minimalist Stitching: Subtle yet stylish",
+      "Moisture-Resistant Lining: Keeps belt fresh and dry"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/7EssentialStrap-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4107,
+    productCode: "GG-LB-EBR-07",
+    title: "ELEGANT BROWN",
+    category: "accessories",
+    description: "Classic brown belt with a refined buckle, perfect for complementing business or formal attire with premium leather quality.",
+    longDescription: "Elegant Brown Leather Belt features smooth premium leather, adjustable fit, and refined stitching for business or formal wear.",
+    feature: [
+      "Premium Leather: Smooth and luxurious",
+      "Comfort & Longevity: Designed for all-day wear",
+      "Customizable Fit: Adjustable for any waist size",
+      "Refined Stitching: Elegant and durable",
+      "Moisture-Resistant Lining: Reliable comfort"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Brown",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/8ElegantBrown-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4108,
+    productCode: "GG-LB-UBL-08",
+    title: "U BLACK",
+    category: "accessories",
+    description: "Modern urban design meets premium leather craftsmanship. Sleek black belt ideal for casual and formal ensembles.",
+    longDescription: "U Black Leather Belt is designed for modern urban fashion with smooth leather, subtle stitching, and adjustable sizing for comfort and style.",
+    feature: [
+      "Premium Leather: Smooth, long-lasting quality",
+      "Comfortable Fit: Soft yet durable",
+      "Adjustable Sizing: Multiple precision holes",
+      "Stylish Stitching: Subtle elegance",
+      "Moisture-Resistant Lining: Perfect for daily wear"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/9UBlack-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4109,
+    productCode: "GG-LB-EE-09",
+    title: "EVERYDAY ESSENTIAL",
+    category: "accessories",
+    description: "Classic belt for everyday wear. Comfortable premium leather with a simple, versatile design.",
+    longDescription: "Everyday Essential Leather Belt combines classic styling and premium leather for comfort, durability, and versatility.",
+    feature: [
+      "100% Premium Leather: Smooth and long-lasting",
+      "Durable & Comfortable: Soft feel for daily use",
+      "Adjustable Fit: Precision-cut holes for perfect sizing",
+      "Minimal Stitching: Clean, modern look",
+      "Moisture-Resistant Lining: Keeps belt fresh and dry"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/10EverydayEssential-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4110,
+    productCode: "GG-LB-CL-10",
+    title: "CLASSIC LATCH",
+    category: "accessories",
+    description: "Timeless belt with a modern latch buckle. Premium leather ensures durability and style for business and casual outfits.",
+    longDescription: "Classic Latch Leather Belt combines timeless design with a modern buckle, premium leather, and elegant stitching for business or casual wear.",
+    feature: [
+      "Premium Leather: Smooth and high-quality",
+      "Comfortable & Durable: Ideal for long-term wear",
+      "Adjustable Fit: Multiple holes for precision sizing",
+      "Elegant Stitching: Adds style and strength",
+      "Moisture-Resistant Lining: Keeps belt pristine"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Latch Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/11ClassicLatch-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4111,
+    productCode: "GG-LB-US-11",
+    title: "URBAN SLEEK",
+    category: "accessories",
+    description: "Modern belt designed for urban fashion. Premium leather combined with a sleek buckle creates a polished, contemporary look.",
+    longDescription: "Urban Sleek Leather Belt features modern styling, soft premium leather, adjustable sizing, and elegant stitching for urban wear.",
+    feature: [
+      "Premium Leather: Smooth and luxurious",
+      "Comfortable Fit: Soft and flexible",
+      "Adjustable Sizing: Multiple holes for perfect fit",
+      "Modern Stitching: Sleek and stylish",
+      "Moisture-Resistant Lining: Perfect for urban lifestyle"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/12UrbanSleek-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4112,
+    productCode: "GG-LB-CM-12",
+    title: "CNICH MARK",
+    category: "accessories",
+    description: "Stylish belt with distinctive marking details. Premium leather ensures durability while offering a unique, contemporary design.",
+    longDescription: "Cinch Mark Leather Belt features high-quality leather, distinctive markings, adjustable sizing, and decorative stitching for style and durability.",
+    feature: [
+      "Premium Leather: High-quality finish",
+      "Comfort & Strength: Durable yet soft",
+      "Adjustable Fit: Multiple holes for precise sizing",
+      "Decorative Stitching: Adds elegance and style",
+      "Moisture-Resistant Lining: Comfortable all day"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Brown",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/13CinchMark-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4113,
+    productCode: "GG-LB-CS-13",
+    title: "CINNAMON STITCHED",
+    category: "accessories",
+    description: "Elegant brown belt with decorative cinnamon stitching. Perfect for casual and semi-formal attire.",
+    longDescription: "Cinnamon Stitched Leather Belt combines premium leather with elegant stitching for a stylish and durable everyday belt.",
+    feature: [
+      "Premium Leather: Smooth and luxurious",
+      "Comfortable & Durable: Soft, long-lasting leather",
+      "Adjustable Fit: Custom sizing options",
+      "Decorative Stitching: Stylish and elegant",
+      "Moisture-Resistant Lining: Keeps belt fresh"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Brown",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/14CinnamonStitched-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4114,
+    productCode: "GG-LB-EC-14",
+    title: "ETERNAL CRAFT",
+    category: "accessories",
+    description: "Premium leather belt crafted for style and longevity. Elegant design perfect for both formal and casual outfits.",
+    longDescription: "Eternal Craft Leather Belt is designed for long-lasting style, featuring premium leather, elegant stitching, and adjustable fit.",
+    feature: [
+      "100% Premium Leather: Soft and durable",
+      "Comfort & Longevity: Ideal for long-term wear",
+      "Adjustable Fit: Custom sizing options",
+      "Elegant Stitching: Adds sophistication",
+      "Moisture-Resistant Lining: Keeps belt comfortable"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/15Eternal Craft-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4115,
+    productCode: "GG-LB-SB-15",
+    title: "SLEEK BLACK",
+    category: "accessories",
+    description: "Modern black belt with a sleek buckle design. Premium leather ensures durability and elegance for any outfit.",
+    longDescription: "Sleek Black Leather Belt is crafted for modern style and comfort, made from premium leather with adjustable sizing and elegant stitching.",
+    feature: [
+      "Premium Leather: Smooth, long-lasting texture",
+      "Comfortable & Durable: Soft and reliable",
+      "Adjustable Fit: Multiple holes for custom sizing",
+      "Elegant Stitching: Adds sophistication",
+      "Moisture-Resistant Lining: Comfortable all day"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/16SleekBlack-Leather-Belt.jpg"],
+    moq: 10
+  },
+  {
+    id: 4116,
+    productCode: "GG-LB-SL-16",
+    title: "SLEEK LOCK",
+    category: "accessories",
+    description: "Premium belt with a modern locking buckle. Designed for style, comfort, and long-lasting performance.",
+    longDescription: "Sleek Lock Leather Belt features a modern locking buckle, premium leather, and elegant stitching for a durable, stylish belt.",
+    feature: [
+      "100% Premium Leather: Smooth and luxurious finish",
+      "Comfort & Durability: Soft yet strong leather",
+      "Adjustable Fit: Multiple holes for precision sizing",
+      "Modern Stitching: Adds elegance and strength",
+      "Moisture-Resistant Lining: Keeps you comfortable all day"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      width: "3.5 cm",
+      buckle: "Lock Metal",
+      length: "Multiple sizes available"
+    },
+    imageUrl: ["/Leather-Belts/17SleekLock-Leather-Belt.jpg"],
+    moq: 10
+  },
+
+  {
+    id: 3101,
+    productCode: "GG-LW-BIF-BLU-01",
+    title: "BIFOLD BLUE",
+    category: "accessories",
+    description: "Crafted from AAA premium leather, this wallet offers an unparalleled fit, feel, and durability.",
+    longDescription: "Bifold Blue Leather Wallet is stylish and functional, designed with multiple card slots and elegant stitching. Perfect for everyday use or special occasions.",
+    feature: [
+      "100% Premium Leather: Luxurious look and feel",
+      "Durability & Comfort: Soft, long-lasting leather",
+      "Multiple Card Slots: Keeps your cards organized and accessible",
+      "Elegant Stitching: Adds sophistication and strength"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Blue",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Blue-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3102,
+    productCode: "GG-LW-BIF-BRN-02",
+    title: "BIFOLD BROWN",
+    category: "accessories",
+    description: "Classic brown wallet crafted from AAA premium leather, designed for both elegance and functionality.",
+    longDescription: "Bifold Brown Leather Wallet offers a timeless look with multiple compartments for cards and cash, made from high-quality leather for durability and style.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Brown",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Brown-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+
+// ------------------- Remaining Leather Wallets -------------------
+{
+    id: 3103,
+    productCode: "GG-LW-BIF-BLK-03",
+    title: "BIFOLD BLACK",
+    category: "accessories",
+    description: "Sleek black wallet crafted from premium leather for a professional and timeless look.",
+    longDescription: "Bifold Black Leather Wallet offers elegance and functionality with multiple card slots, cash compartments, and premium leather construction.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Black-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3104,
+    productCode: "GG-LW-BIF-TAN-04",
+    title: "BIFOLD TAN",
+    category: "accessories",
+    description: "Classic tan leather wallet with a smooth finish, ideal for daily use.",
+    longDescription: "Bifold Tan Leather Wallet combines a premium leather finish with multiple compartments to keep your essentials organized.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Tan",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Tan-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3105,
+    productCode: "GG-LW-BIF-GRN-05",
+    title: "BIFOLD GREEN",
+    category: "accessories",
+    description: "Premium green leather wallet, stylish yet functional for everyday use.",
+    longDescription: "Bifold Green Leather Wallet offers elegance with a distinctive green color, multiple card slots, and premium leather craftsmanship.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Green",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Green-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3106,
+    productCode: "GG-LW-BIF-NAV-06",
+    title: "BIFOLD NAVY",
+    category: "accessories",
+    description: "Elegant navy wallet crafted from premium leather for a modern and professional look.",
+    longDescription: "Bifold Navy Leather Wallet features a premium leather finish with multiple compartments for cards and cash, perfect for professionals.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Navy",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Navy-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3107,
+    productCode: "GG-LW-BIF-RED-07",
+    title: "BIFOLD RED",
+    category: "accessories",
+    description: "Bold red leather wallet crafted for style-conscious users who value functionality.",
+    longDescription: "Bifold Red Leather Wallet combines premium leather craftsmanship with functional compartments, making it a perfect stylish accessory.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Red",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Red-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3108,
+    productCode: "GG-LW-BIF-BRN-08",
+    title: "BIFOLD COFFEE",
+    category: "accessories",
+    description: "Rich coffee-colored leather wallet with multiple compartments for organized storage.",
+    longDescription: "Bifold Coffee Leather Wallet is perfect for daily use, crafted from premium leather with elegant stitching and multiple card slots.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Coffee",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Coffee-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3109,
+    productCode: "GG-LW-BIF-TAN-09",
+    title: "BIFOLD TAN SMOOTH",
+    category: "accessories",
+    description: "Smooth tan leather wallet designed for elegance and durability in everyday use.",
+    longDescription: "Bifold Tan Smooth Leather Wallet combines soft premium leather with multiple compartments for an organized and stylish accessory.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Tan",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Tan-Smooth-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3110,
+    productCode: "GG-LW-BIF-BLK-10",
+    title: "BIFOLD BLACK SMOOTH",
+    category: "accessories",
+    description: "Sleek black smooth leather wallet, functional and stylish for everyday essentials.",
+    longDescription: "Bifold Black Smooth Leather Wallet features premium leather, multiple compartments, and elegant stitching for style and durability.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Black-Smooth-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3111,
+    productCode: "GG-LW-BIF-GRY-11",
+    title: "BIFOLD GREY",
+    category: "accessories",
+    description: "Modern grey leather wallet crafted for durability and contemporary style.",
+    longDescription: "Bifold Grey Leather Wallet combines soft premium leather with multiple compartments, perfect for organized storage and style.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Grey",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Grey-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3112,
+    productCode: "GG-LW-BIF-BRN-12",
+    title: "BIFOLD DARK BROWN",
+    category: "accessories",
+    description: "Dark brown wallet with premium leather finish and elegant design for everyday essentials.",
+    longDescription: "Bifold Dark Brown Leather Wallet offers style, durability, and organization with premium leather construction and multiple compartments.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Dark Brown",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Dark-Brown-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3113,
+    productCode: "GG-LW-BIF-BLU-13",
+    title: "BIFOLD ROYAL BLUE",
+    category: "accessories",
+    description: "Elegant royal blue leather wallet with premium finish and functional compartments.",
+    longDescription: "Bifold Royal Blue Leather Wallet combines style and functionality, crafted from soft premium leather with multiple compartments.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Royal Blue",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Royal-Blue-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3114,
+    productCode: "GG-LW-BIF-GRN-14",
+    title: "BIFOLD EMERALD GREEN",
+    category: "accessories",
+    description: "Stylish emerald green wallet crafted from AAA premium leather for a unique look.",
+    longDescription: "Bifold Emerald Green Leather Wallet features premium leather, multiple compartments, and elegant stitching, perfect for everyday use.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Emerald Green",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Emerald-Green-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3115,
+    productCode: "GG-LW-BIF-BRN-15",
+    title: "BIFOLD CHESTNUT",
+    category: "accessories",
+    description: "Chestnut leather wallet with soft premium leather and multiple compartments for organization.",
+    longDescription: "Bifold Chestnut Leather Wallet is crafted from premium leather with elegant stitching, perfect for everyday carry and professional use.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Chestnut",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Chestnut-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  },
+  {
+    id: 3116,
+    productCode: "GG-LW-BIF-BLK-16",
+    title: "BIFOLD BLACK CLASSIC",
+    category: "accessories",
+    description: "Classic black leather wallet with premium finish, multiple card slots, and elegant design.",
+    longDescription: "Bifold Black Classic Leather Wallet combines premium leather craftsmanship, multiple compartments, and elegant stitching for professional and everyday use.",
+    feature: [
+      "100% Premium Leather",
+      "Durable & Comfortable",
+      "Multiple Card Slots",
+      "Elegant Stitching"
+    ],
+    specifications: {
+      material: "Premium Leather",
+      color: "Black",
+      type: "Bifold",
+      dimensions: "11 x 9 cm",
+      compartments: "Multiple card slots, cash section"
+    },
+    imageUrl: [
+      "/Leather-Wallets/Bifold-Black-Classic-Leather-Wallet-2.jpg"
+    ],
+    moq: 10
+  }
+];
+
+export { products };
