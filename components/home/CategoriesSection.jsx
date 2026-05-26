@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useMemo } from "react";
 import { useCategoryStore } from "../store/useStore";
@@ -193,12 +194,12 @@ const CategoryCard = React.memo(({ category, onCategorySelect }) => {
       data-category={category.categoryKey}
     >
       {/* Background Image */}
-      <img
+      <Image
         src={category.image}
         alt={category.imageAlt}
-        className="w-full h-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-50"
-        loading="lazy"
-        decoding="async"
+        fill
+        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+        className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-50"
       />
 
       {/* Gradient Overlay */}

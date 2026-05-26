@@ -21,7 +21,6 @@ const FINISHED_LEATHER = [
       type: "Veg Tanned Leather",
       thickness: "2.0–4.5 mm (5–11 oz)",
       sizeAvailable: "Full Hide, Side, Cut Panels",
-      compartments: "N/A",
     },
     imageUrl: ["/Raw-Leather/Veg-Tan-Leather.jpg"],
     moq: 25,

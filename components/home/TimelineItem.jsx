@@ -1,5 +1,6 @@
 "use client";
 import React, { useMemo } from "react";
+import Image from "next/image";
 
 // SEO Schema markup for timeline item
 const createTimelineItemSchema = (product, position) => ({
@@ -22,16 +23,16 @@ const TimelineDesktopImage = React.memo(({ product, index }) => {
   return (
     <div className="hidden md:flex w-2/12 justify-center relative items-center">
       <div
-        className="w-48 h-48 rounded-full border-4 border-gray-100 overflow-hidden shadow-lg bg-white z-10 p-2 transform transition-transform duration-300 hover:scale-105"
+        className="relative w-48 h-48 rounded-full border-4 border-gray-100 overflow-hidden shadow-lg bg-white z-10 p-2 transform transition-transform duration-300 hover:scale-105"
         role="img"
         aria-label={altText}
       >
-        <img
+        <Image
           src={product.imageUrl}
           alt={altText}
-          className="w-full h-full object-cover rounded-full"
-          loading="lazy"
-          decoding="async"
+          fill
+          sizes="192px"
+          className="rounded-full object-cover p-2"
         />
       </div>
     </div>
@@ -51,16 +52,16 @@ const TimelineMobileImage = React.memo(({ product, index }) => {
   return (
     <div className="md:hidden mt-6 flex justify-center">
       <div
-        className="w-40 h-40 rounded-full border-4 border-gray-100 overflow-hidden shadow-md"
+        className="relative w-40 h-40 rounded-full border-4 border-gray-100 overflow-hidden shadow-md"
         role="img"
         aria-label={altText}
       >
-        <img
+        <Image
           src={product.imageUrl}
           alt={altText}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
+          fill
+          sizes="160px"
+          className="object-cover"
         />
       </div>
     </div>

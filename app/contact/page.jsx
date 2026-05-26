@@ -5,9 +5,6 @@ import { InfoSection } from "@/components/contact/InfoSection";
 import { FaqSection } from "@/components/contact/FaqSection";
 import { ContactForm } from "@/components/contact/ContactForm";
 
-/**
- * Hero section configuration for the Contact page
- */
 const HERO_CONFIG = {
   established: "Est. 2017",
   location: "Sialkot, PK",
@@ -16,68 +13,48 @@ const HERO_CONFIG = {
   description: "Get in touch with Firm Leather for inquiries and orders",
 };
 
-/**
- * Page metadata and structure configuration
- */
-const CONTACT_PAGE_CONFIG = {
-  title: "Contact Us",
-  description:
-    "Contact Firm Leather for premium leather products and inquiries",
-  url: "https://firmleather.com/contact",
-};
+const SITE_URL = "https://firmleather.com";
+const CONTACT_URL = `${SITE_URL}/contact`;
 
-/**
- * Generates comprehensive structured data (JSON-LD) for the Contact page
- * @returns {Object} Schema.org contact page and organization schema
- */
 const generateContactSchema = () => ({
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://firmleather.com/contact#webpage",
-      url: "https://firmleather.com/contact",
+      "@id": `${CONTACT_URL}#webpage`,
+      url: CONTACT_URL,
       name: "Contact Firm Leather",
       description:
-        "Contact page for Firm Leather. Submit inquiries, get quotes, or reach out to our premium leather supply team.",
+        "Contact Firm Leather for wholesale leather products, private label manufacturing, samples, and export inquiries.",
       isPartOf: {
-        "@id": "https://firmleather.com/#website",
+        "@id": `${SITE_URL}/#website`,
       },
-      datePublished: "2023-01-01",
-      dateModified: new Date().toISOString().split("T")[0],
     },
     {
       "@type": "Organization",
-      "@id": "https://firmleather.com/#organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "Firm Leather",
-      url: "https://firmleather.com",
-      logo: "https://firmleather.com/site-logo/firm-leather-logo.svg",
+      url: SITE_URL,
+      logo: `${SITE_URL}/site-logo/favicon.svg`,
       description:
-        "Premium leather manufacturing and wholesale supplier specializing in high-quality leather jackets, belts, wallets, and accessories.",
-      foundingDate: "2012",
-      areaServed: "US",
+        "Premium leather manufacturer and exporter specializing in finished leather, leather apparel, accessories, sports leather gear, and private label production.",
+      foundingDate: "2017",
+      areaServed: "Worldwide",
       contactPoint: [
         {
           "@type": "ContactPoint",
-          contactType: "Customer Service",
-          telephone: "+1-800-LEATHER",
-          email: "info@firmleather.com",
-          availableLanguage: ["en"],
-          url: "https://firmleather.com/contact",
-        },
-        {
-          "@type": "ContactPoint",
           contactType: "Sales",
-          email: "sales@firmleather.com",
+          telephone: "+923343000580",
+          email: "exports@firmleather.com",
           availableLanguage: ["en"],
+          url: CONTACT_URL,
         },
       ],
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Factory Address",
+        streetAddress: "Sialkot",
         addressLocality: "Sialkot",
         addressRegion: "Punjab",
-        postalCode: "51310",
         addressCountry: "PK",
       },
     },
@@ -88,23 +65,19 @@ const generateContactSchema = () => ({
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://firmleather.com",
+          item: SITE_URL,
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Contact",
-          item: "https://firmleather.com/contact",
+          item: CONTACT_URL,
         },
       ],
     },
   ],
 });
 
-/**
- * HeroContent - Left column with branding and company information
- * @returns {React.ReactElement}
- */
 const HeroContent = React.memo(() => (
   <div
     className="lg:sticky lg:top-32"
@@ -112,15 +85,15 @@ const HeroContent = React.memo(() => (
     aria-label="Company introduction and contact information"
   >
     <div
-      className="block text-primary font-sans text-xs font-bold tracking-[0.2em] uppercase mb-6"
+      className="block text-sub-heading font-sans text-sm font-bold tracking-[0.22em] uppercase mb-6"
       aria-label={`Established ${HERO_CONFIG.established} in ${HERO_CONFIG.location}`}
     >
       {HERO_CONFIG.established} — {HERO_CONFIG.location}
     </div>
 
-    <h1 className="text-5xl md:text-6xl font-serif font-bold text-leather-900 mb-8 leading-none">
+    <h1 className="text-5xl md:text-7xl font-serif font-bold text-stone-950 mb-8 leading-none">
       {HERO_CONFIG.headline} <br />
-      <span className="italic text-primary">{HERO_CONFIG.tagline}</span>
+      <span className="italic text-sub-heading">{HERO_CONFIG.tagline}</span>
     </h1>
 
     <InfoSection />
@@ -129,10 +102,6 @@ const HeroContent = React.memo(() => (
 
 HeroContent.displayName = "HeroContent";
 
-/**
- * ContactContent - Right column with form and FAQ
- * @returns {React.ReactElement}
- */
 const ContactContent = React.memo(() => (
   <div role="region" aria-label="Contact form and frequently asked questions">
     <ContactForm />
@@ -142,11 +111,6 @@ const ContactContent = React.memo(() => (
 
 ContactContent.displayName = "ContactContent";
 
-/**
- * Contact Page - Main contact information and form page
- * Displays company contact information, inquiry form, and FAQ
- * @returns {React.ReactElement}
- */
 export default function Contact() {
   const schemaData = useMemo(() => generateContactSchema(), []);
 
@@ -157,7 +121,7 @@ export default function Contact() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <div
-        className="min-h-screen text-leather-900 font-sans selection:bg-leather-200 selection:text-leather-900"
+        className="min-h-screen bg-stone-50 text-stone-950 font-sans selection:bg-leather-200 selection:text-leather-900"
         itemScope
         itemType="https://schema.org/WebPage"
       >

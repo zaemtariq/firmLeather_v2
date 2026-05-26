@@ -82,7 +82,7 @@ const FaqItem = React.memo(({ id, question, answer, isOpen, onToggle }) => (
       className="w-full flex justify-between items-center p-4 focus:outline-none focus:ring-2 focus:ring-leather-900 focus:ring-offset-2 transition-all"
     >
       <span
-        className="font-sans font-medium text-leather-900 text-left pr-4 flex-1"
+        className="font-sans text-base md:text-lg font-semibold text-stone-950 text-left pr-4 flex-1"
         itemProp="name"
       >
         {question}
@@ -105,7 +105,7 @@ const FaqItem = React.memo(({ id, question, answer, isOpen, onToggle }) => (
       }`}
     >
       <div
-        className="p-4 pt-0 text-leather-600 text-sm leading-relaxed max-w-2xl"
+        className="p-4 pt-0 text-stone-700 text-base leading-relaxed max-w-2xl"
         itemProp="acceptedAnswer"
         itemScope
         itemType="https://schema.org/Answer"
@@ -125,10 +125,10 @@ FaqItem.displayName = "FaqItem";
  */
 const FaqHeading = React.memo(() => (
   <div className="mb-8">
-    <h2 className="text-2xl font-serif font-bold text-leather-900">
+    <h2 className="text-3xl font-serif font-bold text-stone-950">
       Frequently Asked Questions
     </h2>
-    <p className="text-leather-600 text-sm mt-2">
+    <p className="text-stone-600 text-base mt-2">
       Find answers to common questions about our leather goods, shipping,
       warranty, and custom services.
     </p>

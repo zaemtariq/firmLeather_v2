@@ -40,7 +40,10 @@ const CERTIFICATIONS = [
 const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "FirmLeather",
+  "@id": "https://firmleather.com/#organization",
+  name: "Firm Leather",
+  url: "https://firmleather.com",
+  logo: "https://firmleather.com/site-logo/favicon.svg",
   description: ABOUT_CONFIG.mainHeading,
   foundingDate: ABOUT_CONFIG.foundedYear.toString(),
   founders: [
@@ -59,6 +62,19 @@ const ORGANIZATION_SCHEMA = {
     "Full-grain Leather",
     "Leather Craftsmanship",
     "Handcrafted Accessories",
+    "Private Label Leather Manufacturing",
+    "Finished Leather",
+    "Sports Leather Gear",
+  ],
+  areaServed: "Worldwide",
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "Sales",
+      telephone: "+923343000580",
+      email: "exports@firmleather.com",
+      availableLanguage: ["en"],
+    },
   ],
   sameAs: [],
 };

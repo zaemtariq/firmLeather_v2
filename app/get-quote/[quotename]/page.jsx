@@ -1,12 +1,13 @@
 "use client";
-import React, { useState, useRef, use } from "react";
+import React, { useEffect, useMemo, useRef, useState, use } from "react";
+import Image from "next/image";
 
 import {
-  Sparkles,
   Paperclip,
   X,
   Image as ImageIcon,
   AlertCircle,
+  CheckCircle,
 } from "lucide-react";
 
 const RequestQuote = ({ params }) => {
@@ -23,6 +24,18 @@ const RequestQuote = ({ params }) => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const attachmentPreviewUrl = useMemo(() => {
+    if (!formData.attachment?.type.startsWith("image/")) return null;
+    return URL.createObjectURL(formData.attachment);
+  }, [formData.attachment]);
+
+  useEffect(
+    () => () => {
+      if (attachmentPreviewUrl) URL.revokeObjectURL(attachmentPreviewUrl);
+    },
+    [attachmentPreviewUrl],
+  );
+
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setFormData((prev) => ({ ...prev, attachment: e.target.files[0] }));
@@ -250,10 +263,13 @@ const RequestQuote = ({ params }) => {
               {formData.attachment && (
                 <div className="mt-3 flex items-center p-3 bg-leather-50 border border-leather-200 rounded-md animate-fade-in">
                   <div className="h-10 w-10 bg-leather-200 rounded flex items-center justify-center text-leather-600 mr-3 overflow-hidden">
-                    {formData.attachment.type.startsWith("image/") ? (
-                      <img
-                        src={URL.createObjectURL(formData.attachment)}
+                    {attachmentPreviewUrl ? (
+                      <Image
+                        src={attachmentPreviewUrl}
                         alt="Preview"
+                        width={40}
+                        height={40}
+                        unoptimized
                         className="h-full w-full object-cover"
                       />
                     ) : (

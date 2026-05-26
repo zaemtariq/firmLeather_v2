@@ -4,6 +4,7 @@ import CustomServiceSection from "@/components/home/CustomServicesSection";
 import ContactSection from "@/components/home/ContactSection";
 import Hero from "@/components/home/Hero";
 import { ProductLineSection } from "@/components/home/ProductLineSection";
+
 export default function Home() {
   return (
     <div className="font-sans text-dark bg-light leading-relaxed">

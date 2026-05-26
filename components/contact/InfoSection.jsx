@@ -161,10 +161,10 @@ const InfoCard = React.memo(({ id, Icon, title, content, type }) => {
       {isDoubleLayout ? (
         <>
           <address className="p-1 not-italic">
-            <h3 className="font-serif text-lg font-bold text-leather-900">
+            <h3 className="font-serif text-xl font-bold text-stone-950">
               {title}
             </h3>
-            <p className="text-primary font-sans text-sm leading-relaxed mt-1">
+            <p className="text-stone-700 font-sans text-base leading-relaxed mt-1">
               {content[0].split("\n").map((line, idx) => (
                 <React.Fragment key={idx}>
                   {line}
@@ -175,10 +175,10 @@ const InfoCard = React.memo(({ id, Icon, title, content, type }) => {
           </address>
 
           <div className="border-l-4 p-1">
-            <h3 className="font-serif text-lg font-bold text-leather-900">
+            <h3 className="font-serif text-xl font-bold text-stone-950">
               {CONTACT_LOCATIONS.OUTLET}
             </h3>
-            <p className="text-primary font-sans text-sm leading-relaxed mt-1">
+            <p className="text-stone-700 font-sans text-base leading-relaxed mt-1">
               {content[1].split("\n").map((line, idx) => (
                 <React.Fragment key={idx}>
                   {line}
@@ -190,16 +190,16 @@ const InfoCard = React.memo(({ id, Icon, title, content, type }) => {
         </>
       ) : (
         <div>
-          <h3 className="font-serif text-lg font-bold text-leather-900">
+          <h3 className="font-serif text-xl font-bold text-stone-950">
             {title}
           </h3>
-          <div className="text-leather-600 font-sans text-sm leading-relaxed mt-1">
+          <div className="text-stone-700 font-sans text-base leading-relaxed mt-1">
             {id === "phone" || id === "response"
               ? content.map((line, idx) => (
                   <React.Fragment key={idx}>
                     {idx === 1 && id === "phone" ? (
                       <span
-                        className="text-leather-400 text-xs block"
+                        className="text-stone-500 text-sm block"
                         aria-label="Business hours"
                       >
                         {line}

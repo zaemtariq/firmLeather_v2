@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useRef, useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import {
   Sparkles,
   Paperclip,
@@ -116,7 +117,7 @@ const FormInputField = React.memo(
     <div className="space-y-2">
       <label
         htmlFor={id}
-        className="block text-xs font-bold uppercase tracking-wider text-black"
+        className="block text-[13px] font-bold uppercase tracking-wider text-stone-700"
       >
         {label}
       </label>
@@ -130,7 +131,7 @@ const FormInputField = React.memo(
         required
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={`block w-full border-b py-2 px-0 text-black placeholder:text-gray-200 focus:outline-none transition-colors font-serif text-lg ${
+        className={`block w-full border-b py-2 px-0 text-stone-950 placeholder:text-stone-400 focus:outline-none transition-colors font-serif text-base md:text-lg ${
           error
             ? "border-red-400 focus:border-red-500"
             : "border-leather-300 focus:border-leather-900"
@@ -168,37 +169,54 @@ InquiryTypeButton.displayName = "InquiryTypeButton";
  * Attachment preview component
  * @component
  */
-const AttachmentPreview = React.memo(({ attachment, onRemove }) => (
-  <div className="mt-3 flex items-center p-3  border border-leather-200 rounded-md animate-fade-in">
-    <div className="h-10 w-10  rounded flex items-center justify-center text-leather-600 mr-3 overflow-hidden shrink-0">
-      {attachment.type.startsWith("image/") ? (
-        <img
-          src={URL.createObjectURL(attachment)}
-          alt={`Preview of ${attachment.name}`}
-          className="h-full w-full object-cover"
-        />
-      ) : (
-        <ImageIcon className="w-5 h-5" aria-hidden="true" />
-      )}
+const AttachmentPreview = React.memo(({ attachment, onRemove }) => {
+  const previewUrl = useMemo(() => {
+    if (!attachment.type.startsWith("image/")) return null;
+    return URL.createObjectURL(attachment);
+  }, [attachment]);
+
+  useEffect(
+    () => () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    },
+    [previewUrl],
+  );
+
+  return (
+    <div className="mt-3 flex items-center p-3  border border-leather-200 rounded-md animate-fade-in">
+      <div className="h-10 w-10  rounded flex items-center justify-center text-leather-600 mr-3 overflow-hidden shrink-0">
+        {previewUrl ? (
+          <Image
+            src={previewUrl}
+            alt={`Preview of ${attachment.name}`}
+            width={40}
+            height={40}
+            unoptimized
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <ImageIcon className="w-5 h-5" aria-hidden="true" />
+        )}
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-medium text-leather-900 truncate">
+          {attachment.name}
+        </p>
+        <p className="text-xs text-leather-500">
+          {(attachment.size / 1024).toFixed(1)} KB
+        </p>
+      </div>
+      <button
+        type="button"
+        onClick={onRemove}
+        aria-label={`Remove attachment ${attachment.name}`}
+        className="ml-4 p-1 rounded-full text-leather-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+      >
+        <X className="w-4 h-4" aria-hidden="true" />
+      </button>
     </div>
-    <div className="flex-1 min-w-0">
-      <p className="text-sm font-medium text-leather-900 truncate">
-        {attachment.name}
-      </p>
-      <p className="text-xs text-leather-500">
-        {(attachment.size / 1024).toFixed(1)} KB
-      </p>
-    </div>
-    <button
-      type="button"
-      onClick={onRemove}
-      aria-label={`Remove attachment ${attachment.name}`}
-      className="ml-4 p-1 rounded-full text-leather-400 hover:text-red-500 hover:bg-red-50 transition-colors"
-    >
-      <X className="w-4 h-4" aria-hidden="true" />
-    </button>
-  </div>
-));
+  );
+});
 
 AttachmentPreview.displayName = "AttachmentPreview";
 
@@ -247,7 +265,7 @@ const FormTextarea = React.memo(
       <div className="flex justify-between items-end mb-2">
         <label
           htmlFor={id}
-          className="block text-xs font-bold uppercase tracking-wider text-leather-500"
+          className="block text-[13px] font-bold uppercase tracking-wider text-stone-700"
         >
           {label}
         </label>
@@ -264,7 +282,7 @@ const FormTextarea = React.memo(
           required
           aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
-          className={`block w-full border  p-4 pb-12 text-leather-900 placeholder:text-gray-200 focus:bg-white focus:outline-none transition-all resize-none font-serif text-lg leading-relaxed ${
+          className={`block w-full border  p-4 pb-12 text-stone-950 placeholder:text-stone-400 focus:bg-white focus:outline-none transition-all resize-none font-serif text-base md:text-lg leading-relaxed ${
             error
               ? "border-red-400 focus:border-red-500"
               : "border-leather-200 focus:border-leather-900"
@@ -379,20 +397,6 @@ export const ContactForm = () => {
       setIsSending(true);
 
       try {
-        console.group("📧 Sending Email");
-        console.log("To: inquire@firmleather.com");
-        console.log("Subject:", `[${inquiryType}] ${formData.subject}`);
-        console.log("From:", `${formData.name} <${formData.email}>`);
-        console.log("Message:", formData.message);
-        if (formData.attachment) {
-          console.log(
-            "Attachment:",
-            formData.attachment.name,
-            `(${(formData.attachment.size / 1024).toFixed(2)} KB)`,
-          );
-        }
-        console.groupEnd();
-
         await new Promise((resolve) => setTimeout(resolve, 1500));
 
         setIsSending(false);
@@ -406,7 +410,7 @@ export const ContactForm = () => {
         setErrors({ submit: "Something went wrong. Please try again." });
       }
     },
-    [formData, inquiryType, validate],
+    [validate],
   );
 
   const schema = useMemo(() => CONTACT_FORM_SCHEMA, []);
@@ -420,11 +424,11 @@ export const ContactForm = () => {
 
       <div className="bg-white p-8 md:p-10 border border-leather-100 shadow-sm rounded-lg">
         <div className="mb-8">
-          <h2 className="text-2xl font-serif font-bold text-leather-900 mb-2">
+          <h2 className="text-3xl font-serif font-bold text-stone-950 mb-2">
             Compose Message
           </h2>
-          <p className="text-leather-600 font-sans text-sm">
-            Fill out the details below. We'll get back to you as soon as the
+          <p className="text-stone-600 font-sans text-base">
+            Fill out the details below. We&apos;ll get back to you as soon as the
             leather dries.
           </p>
         </div>
@@ -447,7 +451,7 @@ export const ContactForm = () => {
             </div>
 
             <div className="space-y-3">
-              <label className="block text-xs font-bold uppercase tracking-wider text-black">
+              <label className="block text-[13px] font-bold uppercase tracking-wider text-stone-700">
                 Inquiry Type
               </label>
               <div className="flex flex-wrap gap-3">

@@ -1,5 +1,6 @@
 "use client";
 import React, { useMemo } from "react";
+import Image from "next/image";
 import { Layers, Scissors, ShoppingBag, CheckCircle2 } from "lucide-react";
 
 // Icon mapping for dynamic rendering
@@ -16,7 +17,7 @@ const SERVICES = [
     title: "Leather Tannery & Processing",
     description:
       "We operate a state-of-the-art modern leather tannery, producing premium-quality finished leather for multiple industrial and fashion applications. Our experienced leather technicians develop custom finishes, textures, and colors according to buyer specifications — ideal for wholesale leather suppliers, importers, and global fashion brands.",
-    imageUrl: "siteImages/factoryIMages/leather_tannery.jpg",
+    imageUrl: "/siteImages/factoryIMages/leather_tannery.jpg",
     icon: "layers",
     items: [
       "Sheep & goat leather (nappa & suede)",
@@ -31,7 +32,7 @@ const SERVICES = [
     title: "Leather Garment Manufacturing",
     description:
       "FirmLeather offers large-scale leather garment manufacturing for international fashion brands, clothing retailers, and private label leather clothing lines. We manage the complete production process from raw material sourcing to final packaging — ensuring consistent quality for bulk leather garment orders.",
-    imageUrl: "siteImages/factoryIMages/11.png",
+    imageUrl: "/siteImages/factoryIMages/11.png",
     icon: "scissors",
     items: [
       "Custom pattern making & sample development",
@@ -46,7 +47,7 @@ const SERVICES = [
     title: "Leather Goods Manufacturing",
     description:
       "We produce durable and stylish leather goods for international wholesale and retail markets. Combining traditional artisan craftsmanship with modern production techniques to meet the highest standards of quality leather goods manufacturing.",
-    imageUrl: "siteImages/factoryIMages/12.png",
+    imageUrl: "/siteImages/factoryIMages/12.png",
     icon: "shoppingBag",
     items: [
       "Custom leather goods (bags, wallets, belts & accessories)",
@@ -94,12 +95,12 @@ const ServiceImage = React.memo(({ imageUrl, title }) => (
       className="absolute inset-0 bg-stone-900/20 group-hover:bg-stone-900/10 transition-colors z-10"
       aria-hidden="true"
     />
-    <img
+    <Image
       src={imageUrl}
       alt={`${title} - FirmLeather service showcase`}
-      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-      loading="lazy"
-      decoding="async"
+      fill
+      sizes="(min-width: 768px) 33vw, 100vw"
+      className="object-cover transform transition-transform duration-700 group-hover:scale-110"
     />
     <div
       className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-md z-20 text-heading"

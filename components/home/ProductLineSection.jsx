@@ -6,6 +6,7 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { PRODUCT_LINE } from "@/components/constants/constants";
 import { useCategoryStore } from "../store/useStore";
@@ -13,11 +14,6 @@ import { useCategoryStore } from "../store/useStore";
 // Configuration constants
 const INTERSECTION_OPTIONS = {
   threshold: 0.2,
-};
-
-const ANIMATION_DELAYS = {
-  transition: 1000,
-  spin: "20s",
 };
 
 // SEO Schema markup
@@ -37,41 +33,41 @@ const PRODUCT_LINE_SCHEMA = {
   })),
 };
 
-// NumberDisplay Component - Reusable
-const NumberDisplay = React.memo(({ number, className = "" }) => (
-  <span className={`serif font-bold select-none ${className}`}>
-    {(number + 1).toString().padStart(2, "0")}
-  </span>
-));
-
-NumberDisplay.displayName = "NumberDisplay";
-
-// ProductImage Component for desktop
-const DesktopProductImage = React.memo(({ item, index }) => {
+// ProductImage Component
+const ProductImage = React.memo(({ item, index, onClick }) => {
   const number = (index + 1).toString().padStart(2, "0");
 
   return (
     <div
-      className="cursor-pointer absolute left-1/2 -translate-x-1/2 z-20 hidden md:block"
-      role="presentation"
+      className="relative z-20 flex justify-center"
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") onClick();
+      }}
+      aria-label={`View ${item.title}`}
     >
       <div className="group relative">
         {/* Main Image Circle */}
-        <div
-          className="w-56 h-56 rounded-full border-8 border-white shadow-2xl overflow-hidden bg-white flex items-center justify-center p-1 transform transition-all duration-500 group-hover:scale-105 group-hover:rotate-3"
-          aria-label={`Product: ${item.title}`}
-        >
-          <img
+        <div className="relative h-56 w-56 cursor-pointer overflow-hidden rounded-full border-8 border-white bg-white shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-3 md:h-64 md:w-64">
+          <Image
             src={item.imageUrl}
             alt={`${item.title} - Premium leather product from FirmLeather`}
-            className="w-full h-full object-cover rounded-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
-            loading="lazy"
-            decoding="async"
+            fill
+            sizes="(min-width: 768px) 256px, 224px"
+            className="rounded-full object-cover grayscale-[20%] transition-all duration-500 group-hover:grayscale-0"
           />
           <div
             className="absolute inset-0 bg-[#4A3728]/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-full"
             aria-hidden="true"
           />
+        </div>
+        <div
+          className="absolute -left-3 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-sub-heading font-serif text-sm font-bold text-white shadow-lg md:-left-5 md:h-14 md:w-14 md:text-base"
+          aria-hidden="true"
+        >
+          {number}
         </div>
 
         {/* Animated Dashed Ring */}
@@ -84,36 +80,7 @@ const DesktopProductImage = React.memo(({ item, index }) => {
   );
 });
 
-DesktopProductImage.displayName = "DesktopProductImage";
-
-// ProductImage Component for mobile
-const MobileProductImage = React.memo(({ item, index }) => {
-  const number = (index + 1).toString().padStart(2, "0");
-
-  return (
-    <div className="w-full md:w-1/2 flex justify-center md:hidden">
-      <div className="relative">
-        <div className="w-64 h-64 rounded-full border-4 border-white shadow-xl overflow-hidden">
-          <img
-            src={item.imageUrl}
-            alt={`${item.title} - Premium leather product from FirmLeather`}
-            className="w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div
-          className="absolute -top-4 -left-4 w-12 h-12 bg-[#8B4513] text-white rounded-full flex items-center justify-center font-bold serif shadow-lg"
-          aria-hidden="true"
-        >
-          {number}
-        </div>
-      </div>
-    </div>
-  );
-});
-
-MobileProductImage.displayName = "MobileProductImage";
+ProductImage.displayName = "ProductImage";
 
 // ProductItem Component - Main reusable component
 const ProductItem = React.memo(({ item, index }) => {
@@ -121,12 +88,6 @@ const ProductItem = React.memo(({ item, index }) => {
   const domRef = useRef(null);
   const { setActiveCategory } = useCategoryStore();
   const router = useRouter();
-
-  // Memoize number display
-  const number = useMemo(
-    () => (index + 1).toString().padStart(2, "0"),
-    [index],
-  );
 
   // Memoize navigation handler
   const handleProductClick = useCallback(() => {
@@ -154,52 +115,41 @@ const ProductItem = React.memo(({ item, index }) => {
   return (
     <article
       ref={domRef}
-      className={`relative flex flex-col md:flex-row items-center gap-12 md:gap-0 transition-all duration-1000 transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-      }`}
+      className={`relative grid items-center gap-8 transition-all duration-1000 transform
+  md:grid-cols-[minmax(0,1fr)_18rem_minmax(0,1fr)] md:gap-10 ${
+    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+  }`}
       role="listitem"
     >
       {/* Content Section */}
       <section
-        className={`w-full md:w-1/2 flex flex-col ${
+        className={`flex flex-col justify-center md:min-h-64 ${
           item.side === "right"
-            ? "md:order-2 md:pl-40"
-            : "md:order-1 md:pr-40 md:items-end md:text-right"
+            ? "md:col-start-3 md:items-start md:text-left"
+            : "md:col-start-1 md:items-end md:text-right"
         }`}
       >
-        <NumberDisplay
-          number={index}
-          className="text-[#8B4513] text-5xl mb-2 opacity-20"
-        />
+        <span className="mb-3 h-px w-20 bg-sub-heading/60" aria-hidden="true" />
+
         <h3
-          className="text-2xl md:text-3xl font-bold mb-4 tracking-widest text-sub-heading serif uppercase border-b-2 border-[#6B8E23]/10 pb-2 inline-block"
+          className="max-w-sm font-heading12 text-3xl font-bold uppercase leading-tight tracking-wide text-white md:text-4xl"
           id={`product-${index}`}
         >
           {item.title}
         </h3>
+
         <p
-          className="text-gray-300 font-light text-xl max-w-md leading-relaxed"
+          className="mt-5 max-w-md text-base font-light leading-8 text-stone-300 md:text-lg"
           itemProp="description"
         >
           {item.description}
         </p>
       </section>
 
-      {/* Desktop Product Image */}
-      <div onClick={handleProductClick}>
-        <DesktopProductImage item={item} index={index} />
+      {/* Center Product Image */}
+      <div className="md:col-start-2 md:row-start-1">
+        <ProductImage item={item} index={index} onClick={handleProductClick} />
       </div>
-
-      {/* Mobile Product Image */}
-      <MobileProductImage item={item} index={index} />
-
-      {/* Desktop Spacing */}
-      <div
-        className={`hidden md:block w-1/2 ${
-          item.side === "right" ? "order-1" : "order-2"
-        }`}
-        aria-hidden="true"
-      />
     </article>
   );
 });
@@ -283,8 +233,8 @@ export const ProductLineSection = () => {
             </h2>
             <p className="mt-12 text-gray-300 max-w-xl mx-auto italic font-light leading-relaxed">
               Merging heritage craftsmanship with modern innovation to deliver
-              the world's most versatile premium leather products for global
-              brands and discerning customers.
+              the world&apos;s most versatile premium leather products for
+              global brands and discerning customers.
             </p>
           </header>
 

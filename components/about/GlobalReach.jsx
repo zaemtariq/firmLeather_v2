@@ -1,5 +1,6 @@
 "use client";
 import React, { useMemo } from "react";
+import Image from "next/image";
 import { Globe2 } from "lucide-react";
 
 // Configuration constants
@@ -82,13 +83,13 @@ const InfoCard = React.memo(() => (
       {GLOBAL_REACH_DESCRIPTION}
     </p>
 
-    <figure className="mt-6">
-      <img
+    <figure className="relative mt-6 aspect-[4/3]">
+      <Image
         src="/siteImages/factoryIMages/Global_presence.png"
         alt="FirmLeather's global logistics network and distribution routes"
-        className="w-full rounded-lg"
-        loading="lazy"
-        decoding="async"
+        fill
+        sizes="(min-width: 768px) 33vw, 100vw"
+        className="rounded-lg object-contain"
       />
       <figcaption className="sr-only">
         Global logistics and export network visualization

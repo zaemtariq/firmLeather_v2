@@ -1,160 +1,122 @@
-import React, { useMemo } from "react";
-import { MessageSquare, PenTool, Factory, Truck } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  ClipboardCheck,
+  Factory,
+  PenTool,
+  Truck,
+} from "lucide-react";
 
-// Process steps configuration
-const PROCESS_STEPS = [
+const processSteps = [
   {
-    id: 1,
-    number: "1",
-    title: "Consultation",
-    icon: MessageSquare,
+    title: "Brief",
     description:
-      "We discuss your design specifications, material requirements, quality standards, and target price points in detail.",
-    shortDescription:
-      "We discuss your design specs, material needs, and target price points.",
+      "We align on product type, material, sizing, branding, quantity, and target delivery requirements.",
+    icon: ClipboardCheck,
   },
   {
-    id: 2,
-    number: "2",
-    title: "Prototyping",
+    title: "Sample",
+    description:
+      "Patterns, trims, stitching, and finishing details are checked through a physical sample before production.",
     icon: PenTool,
-    description:
-      "Our skilled sample room creates a detailed physical sample for your review and approval before production begins.",
-    shortDescription:
-      "Our sample room creates a physical sample for your approval.",
   },
   {
-    id: 3,
-    number: "3",
-    title: "Production",
+    title: "Produce",
+    description:
+      "Approved orders move through cutting, stitching, finishing, and quality checks with factory oversight.",
     icon: Factory,
-    description:
-      "Manufacturing begins with strict quality control checks at every stage of production to ensure excellence.",
-    shortDescription:
-      "Manufacturing begins with strict quality control checks at every stage.",
   },
   {
-    id: 4,
-    number: "4",
-    title: "Global Delivery",
-    icon: Truck,
+    title: "Ship",
     description:
-      "We handle all logistics to ship your finished leather goods anywhere in the world with reliable partners.",
-    shortDescription:
-      "We handle logistics to ship your goods anywhere in the world.",
+      "Finished goods are packed for export and prepared for reliable delivery to your destination.",
+    icon: Truck,
   },
 ];
 
-// Schema markup for the process
-const PROCESS_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  name: "FirmLeather Partnership Process",
-  description:
-    "The step-by-step process for partnering with FirmLeather for leather goods manufacturing",
-  step: PROCESS_STEPS.map((step) => ({
-    "@type": "HowToStep",
-    position: step.id,
-    name: `${step.number}. ${step.title}`,
-    text: step.description,
-  })),
-};
-
-// ProcessStep Component - Reusable and memoized
-const ProcessStep = React.memo(({ step, totalSteps }) => {
-  const Icon = step.icon;
-
-  return (
-    <div
-      className="relative z-10 flex-1 px-5 group"
-      role="listitem"
-      itemScope
-      itemType="https://schema.org/HowToStep"
-    >
-      {/* Icon Circle */}
-      <div
-        className="w-16 h-16 bg-white border-2 border-primary rounded-full flex items-center justify-center mx-auto mb-5 text-primary transition-colors duration-300 group-hover:bg-primary-hover group-hover:text-white shadow-sm focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary"
-        aria-hidden="true"
-      >
-        <Icon size={24} />
-      </div>
-
-      {/* Step Content */}
-      <meta itemProp="position" content={step.id} />
-      <h4 className="text-lg font-bold mb-2 text-gray-900" itemProp="name">
-        {step.number}. {step.title}
-      </h4>
-      <p className="text-sm text-gray-500 leading-relaxed" itemProp="text">
-        {step.shortDescription}
-      </p>
-
-      {/* Hidden full description for SEO */}
-      <p className="sr-only">{step.description}</p>
-    </div>
-  );
-});
-
-ProcessStep.displayName = "ProcessStep";
-
 export default function ProcessSection() {
-  // Memoize data
-  const steps = useMemo(() => PROCESS_STEPS, []);
-  const schema = useMemo(() => PROCESS_SCHEMA, []);
-  const totalSteps = useMemo(() => steps.length, [steps]);
-
   return (
-    <>
-      {/* SEO Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema),
-        }}
-      />
-
-      <section
-        className="py-24 bg-white text-center"
-        aria-label="Partnership Process with FirmLeather"
-        role="region"
-      >
-        <div className="max-w-[1200px] mx-auto px-5">
-          {/* Section Header */}
-          <header className="text-center mb-16">
-            <h2 className="text-4xl font-serif font-bold mb-3 text-gray-900">
-              The Partnership Process
-            </h2>
-            <p className="text-gray-500 font-serif italic text-xl">
-              Simple steps to build your brand with FirmLeather
+    <section
+      className="bg-leather-50 px-5 py-16 text-stone-900 sm:px-6 lg:px-8"
+      aria-label="FirmLeather manufacturing process"
+    >
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              Our Process
             </p>
-          </header>
-
-          {/* Process Timeline */}
-          <div
-            className="relative flex flex-col md:flex-row justify-between gap-10 md:gap-0 mt-16"
-            role="list"
-            aria-label="Partnership steps"
-          >
-            {/* Connecting Line - Desktop Only */}
-            <div
-              className="hidden md:block absolute top-[30px] left-[50px] right-[50px] h-[2px] bg-gray-200 z-0"
-              aria-hidden="true"
-            />
-
-            {/* Process Steps */}
-            {steps.map((step) => (
-              <ProcessStep key={step.id} step={step} totalSteps={totalSteps} />
-            ))}
+            <h2 className="mt-4 max-w-xl text-4xl font-extrabold leading-tight text-stone-950 sm:text-5xl">
+              From product brief to export-ready leather goods.
+            </h2>
           </div>
-
-          {/* Summary text for accessibility */}
-          <p className="sr-only">
-            Our partnership process consists of four main stages: initial
-            consultation to understand your needs, prototyping to create samples
-            for approval, production with quality control, and finally global
-            delivery of your leather goods.
+          <p className="max-w-2xl text-base leading-8 text-stone-600 lg:justify-self-end">
+            Our workflow is built for buyers who need clarity before production
+            and consistency during production. Each step keeps decisions,
+            samples, quality checks, and shipping requirements visible.
           </p>
         </div>
-      </section>
-    </>
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="relative min-h-[360px] overflow-hidden rounded-lg bg-stone-950 shadow-sm lg:min-h-full">
+            <Image
+              src="/siteImages/factoryIMages/cumtomize_for_you.jpg"
+              alt="FirmLeather custom leather production"
+              fill
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-stone-950 via-stone-950/65 to-transparent p-6 text-white">
+              <p className="text-sm font-bold uppercase tracking-wide text-amber-200">
+                Custom manufacturing support
+              </p>
+              <p className="mt-3 max-w-md text-sm leading-6 text-stone-200">
+                Built for private-label collections, wholesale orders, and
+                product runs that need reliable repeatability.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {processSteps.map(({ title, description, icon: Icon }, index) => (
+              <article
+                key={title}
+                className="rounded-lg border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-leather-300 hover:shadow-lg"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-leather-100 text-primary">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <span className="font-mono text-sm font-bold text-stone-300">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="mt-6 text-2xl font-extrabold text-stone-950">
+                  {title}
+                </h3>
+                <p className="mt-3 leading-7 text-stone-600">{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="/manufacturing-process"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-primary-hover"
+          >
+            View Full Process
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+          <Link
+            href="/get-quote/general"
+            className="inline-flex h-12 items-center justify-center rounded-full border border-stone-300 bg-white px-6 text-sm font-bold uppercase tracking-wide text-stone-900 transition hover:border-primary hover:text-primary"
+          >
+            Start a Project
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

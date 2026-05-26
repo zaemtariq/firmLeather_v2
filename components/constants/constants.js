@@ -21,7 +21,6 @@ export const FACTORY_STATIONS = [
       "30-day slow-immersion vegetable tanning process",
       "Top 1% ethically sourced hides from sustainable farms",
       "Rigorous raw hide imperfection and grading checks",
-      "Eco-friendly water filtration and waste management systems",
     ],
   },
   {
@@ -159,28 +158,30 @@ export const CATEGORIES_DATA = [
     sub_cat: [
       "leather-belts",
       "leather-wallets",
+      "rfid-blocking-wallets",
       "leather-jackets",
+      "cowboy-chaps",
       "golf-gloves",
-      "baseBall-gloves",
+      "baseball-batting-gloves",
     ],
   },
   {
     id: "sports",
     label: "PERFORMANCE SPORTS",
     icon: Trophy,
-    sub_cat: ["golf-gloves", "baseBall-gloves"],
+    sub_cat: ["golf-gloves", "baseball-batting-gloves"],
   },
   {
     id: "apparel",
     label: "APPAREL",
     icon: Shirt,
-    sub_cat: ["leather-jackets"],
+    sub_cat: ["leather-jackets", "cowboy-chaps"],
   },
   {
     id: "accessories",
     label: "ACCESSORIES",
     icon: Wallet,
-    sub_cat: ["leather-belts", "leather-wallets"],
+    sub_cat: ["leather-belts", "leather-wallets", "rfid-blocking-wallets"],
   },
   {
     id: "finished-leather",

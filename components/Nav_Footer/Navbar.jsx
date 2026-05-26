@@ -1,199 +1,172 @@
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Page } from "@/components/constants/constants";
+import { usePathname } from "next/navigation";
 import {
-  Phone,
-  Menu,
-  X,
-  ShoppingBag,
-  Info,
-  Home,
   ChevronRight,
   Factory,
+  Home,
+  Info,
+  Menu,
+  Phone,
+  ShoppingBag,
+  X,
 } from "lucide-react";
+import { Page } from "@/components/constants/constants";
 
-// Design system constants
-const COLORS = {
-  primary: "#4A3728",
-  accent: "#AE592C",
-  hover: "#8B4513",
-  white: "#ffffff",
-  lightBorder: "#F3F4F6",
-};
-
-const STYLES = {
-  navLink:
-    "text-sm font-medium uppercase tracking-widest hover:transition-colors",
-  mobileNavLink: "block text-lg font-medium serif",
-  desktopNav: "hidden md:flex space-x-10 items-center",
-  mobileMenuContainer:
-    "lg:hidden bg-white absolute top-full left-0 w-full border-t shadow-xl p-8 space-y-6 flex flex-col",
-};
-
-// Navigation configuration
-const NAV_LINKS = [
-  { name: "Home", path: Page.Home, icon: Home, ariaLabel: "Go to home page" },
-  {
-    name: "Products",
-    path: Page.Products,
-    icon: ShoppingBag,
-    ariaLabel: "View our products",
-  },
-  {
-    name: "Our Process",
-    path: Page.ManufacturingProcess,
-    icon: Factory,
-    ariaLabel: "Learn about our manufacturing process",
-  },
-  {
-    name: "About",
-    path: Page.About,
-    icon: Info,
-    ariaLabel: "Learn about FirmLeather",
-  },
-  { name: "Contact", path: Page.Contact, icon: Phone, ariaLabel: "Contact us" },
+const navigation = [
+  { label: "Home", href: Page.Home, icon: Home },
+  { label: "Products", href: Page.Products, icon: ShoppingBag },
+  { label: "Process", href: Page.ManufacturingProcess, icon: Factory },
+  { label: "About", href: Page.About, icon: Info },
+  { label: "Contact", href: Page.Contact, icon: Phone },
 ];
 
-export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+const isActivePath = (pathname, href) => {
+  if (href === Page.Home) return pathname === href;
+  return pathname === href || pathname.startsWith(`${href}/`);
+};
 
-  // Memoize navigation links to prevent unnecessary re-renders
-  const navLinks = useMemo(() => NAV_LINKS, []);
+export const Navbar = () => {
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const updateNavbar = () => setIsScrolled(window.scrollY > 16);
+
+    updateNavbar();
+    window.addEventListener("scroll", updateNavbar, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateNavbar);
   }, []);
 
-  const closeMenu = () => setIsOpen(false);
+  const navClasses = isScrolled || isOpen
+    ? "border-stone-200 bg-white/95 shadow-sm backdrop-blur"
+    : "border-transparent bg-white/85 backdrop-blur-sm md:bg-transparent";
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md py-3"
-          : "bg-transparent py-6"
-      }`}
-      aria-label="Main navigation"
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${navClasses}`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* Logo Section */}
+      <nav
+        className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8"
+        aria-label="Main navigation"
+      >
         <Link
-          href="/"
-          className="flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded"
-          title="FirmLeather - Premium Leather Goods"
+          href={Page.Home}
+          className="flex items-center gap-3 rounded-sm outline-none transition focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
+          aria-label="FirmLeather home"
         >
-          <div className="relative w-8 h-8">
-            <img
-              src="/site-logo/Firmleather-logo.gif"
-              alt="FirmLeather - Premium leather goods manufacturer and exporter"
-              className="object-contain w-full h-full"
-              loading="eager"
-            />
-          </div>
-          <span
-            className="text-2xl font-bold tracking-tighter serif"
-            style={{ color: COLORS.primary }}
-          >
-            FIRM<span style={{ color: COLORS.accent }}>LEATHER</span>
+          <Image
+            src="/site-logo/Firmleather-logo.gif"
+            alt=""
+            width={40}
+            height={40}
+            unoptimized
+            className="h-10 w-10 object-contain"
+            priority
+          />
+          <span className="font-heading12 text-2xl font-extrabold tracking-normal text-stone-950">
+            Firm<span className="text-primary">Leather</span>
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className={STYLES.desktopNav}>
-          {navLinks.map((link) => {
-            const IconComponent = link.icon;
+        <div className="hidden items-center gap-1 lg:flex">
+          {navigation.map(({ label, href, icon: Icon }) => {
+            const active = isActivePath(pathname, href);
+
             return (
               <Link
-                key={link.name}
-                href={link.path}
-                className={STYLES.navLink}
-                style={{ color: COLORS.primary }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = COLORS.hover)
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = COLORS.primary)
-                }
-                aria-label={link.ariaLabel}
+                key={href}
+                href={href}
+                aria-current={active ? "page" : undefined}
+                className={`flex h-10 items-center gap-2 rounded-full px-4 text-sm font-semibold transition ${
+                  active
+                    ? "bg-leather-100 text-primary"
+                    : "text-stone-700 hover:bg-stone-100 hover:text-primary"
+                }`}
               >
-                <div className="flex items-center space-x-3">
-                  <IconComponent size={18} aria-hidden="true" />
-                  <span>{link.name}</span>
-                </div>
+                <Icon className="h-4 w-4" aria-hidden="true" />
+                {label}
               </Link>
             );
           })}
+        </div>
+
+        <div className="hidden items-center gap-3 lg:flex">
+          <a
+            href="tel:+923343000580"
+            className="flex h-10 items-center gap-2 rounded-full px-4 text-sm font-semibold text-stone-700 transition hover:bg-stone-100 hover:text-primary"
+          >
+            <Phone className="h-4 w-4" aria-hidden="true" />
+            Call
+          </a>
           <Link
             href={Page.RequestQuote}
-            className="focus:outline-none focus:ring-2 focus:ring-offset-2 rounded"
+            className="flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-bold text-white shadow-sm transition hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
           >
-            <button
-              className="bg-primary text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary-hover transition-all flex items-center gap-2"
-              aria-label="Request a quote from FirmLeather"
-            >
-              <span>Get Quote</span>
-              <ChevronRight size={14} aria-hidden="true" />
-            </button>
+            Get Quote
+            <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded"
-          style={{ color: COLORS.primary }}
-          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          type="button"
+          className="flex h-11 w-11 items-center justify-center rounded-full text-stone-900 transition hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 lg:hidden"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
-          aria-controls="mobile-menu"
+          aria-controls="mobile-navigation"
+          onClick={() => setIsOpen((open) => !open)}
         >
           {isOpen ? (
-            <X size={28} aria-hidden="true" />
+            <X className="h-6 w-6" aria-hidden="true" />
           ) : (
-            <Menu size={28} aria-hidden="true" />
+            <Menu className="h-6 w-6" aria-hidden="true" />
           )}
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile Navigation Menu */}
       {isOpen && (
         <div
-          className={STYLES.mobileMenuContainer}
-          id="mobile-menu"
-          style={{ borderTopColor: COLORS.lightBorder }}
+          id="mobile-navigation"
+          className="border-t border-stone-200 bg-white px-5 py-5 shadow-lg lg:hidden"
         >
-          {navLinks.map((link) => {
-            const IconComponent = link.icon;
-            return (
-              <Link
-                key={link.name}
-                href={link.path}
-                className={STYLES.mobileNavLink}
-                style={{ color: COLORS.primary }}
-                onClick={closeMenu}
-                aria-label={link.ariaLabel}
-              >
-                <div className="flex items-center space-x-3">
-                  <IconComponent size={18} aria-hidden="true" />
-                  <span>{link.name}</span>
-                </div>
-              </Link>
-            );
-          })}
-          <Link href={Page.RequestQuote} onClick={closeMenu}>
-            <button
-              className="w-full text-white px-6 py-4 rounded-xl text-sm font-bold uppercase tracking-widest flex justify-center items-center gap-2"
-              style={{ backgroundColor: COLORS.accent }}
-              aria-label="Request a quote from FirmLeather"
+          <div className="mx-auto grid max-w-7xl gap-2">
+            {navigation.map(({ label, href, icon: Icon }) => {
+              const active = isActivePath(pathname, href);
+
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={active ? "page" : undefined}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 rounded-lg px-4 py-3 text-base font-semibold transition ${
+                    active
+                      ? "bg-leather-100 text-primary"
+                      : "text-stone-800 hover:bg-stone-100 hover:text-primary"
+                  }`}
+                >
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                  {label}
+                </Link>
+              );
+            })}
+
+            <Link
+              href={Page.RequestQuote}
+              onClick={() => setIsOpen(false)}
+              className="mt-3 flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-primary-hover"
             >
-              Get Quote <ChevronRight size={14} aria-hidden="true" />
-            </button>
-          </Link>
+              Get Quote
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };

@@ -9,51 +9,22 @@ import React, {
 import { MessageSquare, X, Send, Sparkles } from "lucide-react";
 import { getLeatherCareAdvice } from "./geminiService";
 
-// ============================================================================
-// CONFIGURATION CONSTANTS
-// ============================================================================
-/**
- * Initial welcome message from the assistant
- * @type {Object}
- */
 const INITIAL_MESSAGE = {
   role: "model",
   text: "Hello! I'm your FirmLeather Care Specialist. Ask me how to care for your leather goods or about our leather types.",
 };
 
-/**
- * Chat assistant metadata
- * @type {Object}
- */
 const ASSISTANT_META = {
   name: "Leather Care Assistant",
-  icon: Sparkles,
   placeholder: "Ask about leather care...",
 };
 
-/**
- * Message display configuration
- * @type {Object}
- */
-const MESSAGE_CONFIG = {
-  maxWidth: "80%",
-  scrollDelay: 0,
-};
-
-/**
- * Loading animation dot configuration
- * @type {Array}
- */
 const LOADING_DOTS = [
   { id: "dot-1", delay: "0ms" },
   { id: "dot-2", delay: "150ms" },
   { id: "dot-3", delay: "300ms" },
 ];
 
-/**
- * ChatBot schema for SEO/structured data
- * @type {Object}
- */
 const CHATBOT_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ChatBot",
@@ -63,13 +34,6 @@ const CHATBOT_SCHEMA = {
   availableLanguage: "en",
 };
 
-// ============================================================================
-// SUB-COMPONENTS
-// ============================================================================
-/**
- * Chat header component
- * @component
- */
 const ChatHeader = React.memo(({ onClose }) => (
   <div className="bg-primary p-4 flex justify-between items-center text-white">
     <div className="flex items-center space-x-2">
@@ -88,10 +52,6 @@ const ChatHeader = React.memo(({ onClose }) => (
 
 ChatHeader.displayName = "ChatHeader";
 
-/**
- * Single chat message component
- * @component
- */
 const ChatMessage = React.memo(({ message, isUser }) => (
   <div
     className={`flex ${isUser ? "justify-end" : "justify-start"}`}
@@ -99,7 +59,7 @@ const ChatMessage = React.memo(({ message, isUser }) => (
     aria-label={`${isUser ? "Your" : "Assistant"} message: ${message.text}`}
   >
     <div
-      className={`max-w-[${MESSAGE_CONFIG.maxWidth}] rounded-lg p-3 text-sm ${
+      className={`max-w-[80%] rounded-lg p-3 text-sm ${
         isUser
           ? "bg-primary text-white rounded-br-none"
           : "bg-white border border-stone-200 text-stone-700 shadow-sm rounded-bl-none"
@@ -112,10 +72,6 @@ const ChatMessage = React.memo(({ message, isUser }) => (
 
 ChatMessage.displayName = "ChatMessage";
 
-/**
- * Loading indicator component with animated dots
- * @component
- */
 const LoadingIndicator = React.memo(() => (
   <div
     className="flex justify-start"
@@ -140,10 +96,6 @@ const LoadingIndicator = React.memo(() => (
 
 LoadingIndicator.displayName = "LoadingIndicator";
 
-/**
- * Chat input component
- * @component
- */
 const ChatInput = React.memo(
   ({ value, onChange, onSend, isLoading, onKeyDown }) => (
     <div className="p-3 bg-white border-t border-stone-200 flex space-x-2">
@@ -172,10 +124,6 @@ const ChatInput = React.memo(
 
 ChatInput.displayName = "ChatInput";
 
-/**
- * Messages container component
- * @component
- */
 const MessagesContainer = React.memo(({ messages, isLoading, scrollRef }) => (
   <div
     ref={scrollRef}
@@ -197,10 +145,6 @@ const MessagesContainer = React.memo(({ messages, isLoading, scrollRef }) => (
 
 MessagesContainer.displayName = "MessagesContainer";
 
-/**
- * Chat window component
- * @component
- */
 const ChatWindow = React.memo(
   ({
     isOpen,
@@ -212,8 +156,6 @@ const ChatWindow = React.memo(
     onClose,
     scrollRef,
   }) => {
-    if (!isOpen) return null;
-
     const handleKeyDown = useCallback(
       (e) => {
         if (e.key === "Enter" && !isLoading && input.trim()) {
@@ -222,6 +164,8 @@ const ChatWindow = React.memo(
       },
       [isLoading, input, onSend],
     );
+
+    if (!isOpen) return null;
 
     return (
       <div className="mb-4 w-80 sm:w-96 bg-white rounded-xl shadow-2xl border border-stone-200 overflow-hidden flex flex-col animate-in slide-in-from-bottom-5 fade-in duration-200">
@@ -245,10 +189,6 @@ const ChatWindow = React.memo(
 
 ChatWindow.displayName = "ChatWindow";
 
-/**
- * Toggle button component
- * @component
- */
 const ToggleButton = React.memo(({ isOpen, onClick }) => (
   <button
     onClick={onClick}
@@ -266,19 +206,6 @@ const ToggleButton = React.memo(({ isOpen, onClick }) => (
 
 ToggleButton.displayName = "ToggleButton";
 
-// ============================================================================
-// MAIN COMPONENT
-// ============================================================================
-/**
- * Gemini Assistant component for leather care advice
- * Provides chat interface for users to ask questions about leather care and products
- *
- * @component
- * @returns {React.ReactElement} Rendered chat assistant
- * @example
- * // Basic usage
- * <GeminiAssistant />
- */
 const GeminiAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -286,14 +213,12 @@ const GeminiAssistant = () => {
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef(null);
 
-  // Auto-scroll to bottom when messages change or chat opens
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isOpen]);
 
-  // Handle sending message
   const handleSend = useCallback(async () => {
     if (!input.trim() || isLoading) return;
 
@@ -319,22 +244,18 @@ const GeminiAssistant = () => {
     }
   }, [input, isLoading]);
 
-  // Handle input change
   const handleInputChange = useCallback((value) => {
     setInput(value);
   }, []);
 
-  // Handle toggle
   const handleToggle = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
 
-  // Handle close
   const handleClose = useCallback(() => {
     setIsOpen(false);
   }, []);
 
-  // Memoized schema
   const chatbotSchema = useMemo(() => CHATBOT_SCHEMA, []);
 
   return (

@@ -1,6 +1,4 @@
-import React, { useMemo } from "react";
 import Link from "next/link";
-import { Page } from "@/components/constants/constants";
 import {
   Mail,
   Phone,
@@ -8,243 +6,188 @@ import {
   Instagram,
   Facebook,
   Linkedin,
-  Twitter,
 } from "lucide-react";
+import { Page } from "@/components/constants/constants";
 
-// Footer content configuration
-const COLLECTIONS = [
-  { id: "Finished Leather", url: "/products/finished-leather" },
-  { id: "Heritage Apparel", url: "/products/apparel" },
-  { id: "Refined Accessories", url: "/products/accessories" },
-  { id: "Performance Sports", url: "/products/sports" },
-];
-
-const COMPANY_LINKS = [
-  { id: "Why Choose Us?", url: "/about#whychooseus" },
-  { id: "Factory tour", url: "/factory-tour" },
-  { id: "Export Services", url: "/about#globalreach" },
-  { id: "Manufacturing Models", url: "/about#manufacturingmodels" },
-  { id: "FAQs", url: "/contact#faqSection" },
-];
-
-const SOCIAL_LINKS = [
+const collections = [
   {
-    name: "Facebook",
-    url: "https://www.facebook.com/firmleather/",
+    name: "Finished Leather",
+    href: "/products/finished-leather",
+  },
+  {
+    name: "Heritage Apparel",
+    href: "/products/apparel",
+  },
+  {
+    name: "Refined Accessories",
+    href: "/products/accessories",
+  },
+  {
+    name: "Performance Sports",
+    href: "/products/sports",
+  },
+];
+
+const companyLinks = [
+  {
+    name: "Why Choose Us",
+    href: "/about#why-us",
+  },
+  {
+    name: "Factory Tour",
+    href: "/factory-tour",
+  },
+  {
+    name: "Export Services",
+    href: "/about#global",
+  },
+  {
+    name: "Manufacturing Models",
+    href: "/about#models",
+  },
+];
+
+const socials = [
+  {
     icon: Facebook,
-    ariaLabel: "Visit FirmLeather on Facebook",
+    href: "https://www.facebook.com/firmleather/",
   },
   {
-    name: "Instagram",
-    url: "https://www.instagram.com/firm.leather/",
     icon: Instagram,
-    ariaLabel: "Visit FirmLeather on Instagram",
+    href: "https://www.instagram.com/firm.leather/",
   },
   {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/company/firmleather/",
     icon: Linkedin,
-    ariaLabel: "Visit FirmLeather on LinkedIn",
-  },
-  {
-    name: "Twitter",
-    url: "#",
-    icon: Twitter,
-    ariaLabel: "Visit FirmLeather on Twitter",
+    href: "https://www.linkedin.com/company/firmleather/",
   },
 ];
 
-const CONTACT_INFO = {
-  address: {
-    street: "Shah Faisal Plaza, Block B North Nazimabad Town",
-    city: "Karachi",
-    postal: "74600",
-    country: "Pakistan",
-  },
-  phone: "+92 334 3000580",
-  phoneFormatted: "+92-334-3000580",
-  email: "exports@firmleather.com",
-};
-
-const ORGANIZATION_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "FirmLeather",
-  url: "https://www.firmleather.com",
-  logo: "https://www.firmleather.com/logo.png",
-  description:
-    "Est. 2017. We craft premium leather goods that combine traditional artistry with modern functionality. Exporting quality worldwide.",
-  foundingDate: "2017",
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: CONTACT_INFO.phoneFormatted,
-    contactType: "customer service",
-    email: CONTACT_INFO.email,
-  },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: CONTACT_INFO.address.street,
-    addressLocality: CONTACT_INFO.address.city,
-    postalCode: CONTACT_INFO.address.postal,
-    addressCountry: "PK",
-  },
-  sameAs: [
-    "https://www.facebook.com/firmleather/",
-    "https://www.instagram.com/firm.leather/",
-    "https://www.linkedin.com/company/firmleather/",
-  ],
-};
-
-export const Footer = () => {
-  // Memoize data to prevent unnecessary re-renders
-  const collections = useMemo(() => COLLECTIONS, []);
-  const companyLinks = useMemo(() => COMPANY_LINKS, []);
-  const socialLinks = useMemo(() => SOCIAL_LINKS, []);
-  const currentYear = useMemo(() => new Date().getFullYear(), []);
-
+export function Footer() {
   return (
-    <footer
-      className="bg-leather-primary text-white pt-20 pb-10 border-t border-leather-800"
-      role="contentinfo"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand Section */}
-          <section>
-            <h2 className="text-2xl font-serif font-bold tracking-tighter mb-6">
-              FIRMLEATHER<span className="text-accent-gold">.</span>
+    <footer className="border-t border-stone-800 bg-stone-950 text-white">
+      <div className="mx-auto max-w-7xl px-6 py-20">
+        <div className="grid gap-14 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
+          {/* Brand */}
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight">
+              FIRMLEATHER
+              <span className="text-amber-500">.</span>
             </h2>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Est. 2017. We craft premium leather goods that combine traditional
-              artistry with modern functionality. Exporting quality worldwide.
+
+            <p className="mt-5 max-w-sm leading-7 text-stone-400">
+              Premium leather manufacturer and exporter crafting timeless
+              leather goods for global brands, retailers, and wholesalers since
+              2017.
             </p>
-            <div className="flex space-x-4" role="list">
-              {socialLinks.map((social) => {
-                const IconComponent = social.icon;
+
+            {/* Socials */}
+            <div className="mt-8 flex gap-3">
+              {socials.map((item, index) => {
+                const Icon = item.icon;
+
                 return (
                   <a
-                    key={social.name}
-                    href={social.url}
-                    className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary-hover transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                    aria-label={social.ariaLabel}
-                    target={social.url !== "#" ? "_blank" : undefined}
-                    rel={social.url !== "#" ? "noopener noreferrer" : undefined}
-                    role="listitem"
+                    key={index}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-stone-700 text-stone-300 transition hover:border-amber-500 hover:text-amber-500"
                   >
-                    <IconComponent size={18} aria-hidden="true" />
+                    <Icon size={18} />
                   </a>
                 );
               })}
             </div>
-          </section>
+          </div>
 
-          {/* Collections Section */}
-          <section>
-            <h3 className="text-lg font-serif font-bold mb-6">Collections</h3>
-            <ul className="space-y-4">
+          {/* Collections */}
+          <div>
+            <h3 className="text-lg font-semibold">Collections</h3>
+
+            <ul className="mt-6 space-y-4">
               {collections.map((item) => (
-                <li key={item.id}>
+                <li key={item.name}>
                   <Link
-                    href={item.url}
-                    className="text-gray-400 hover:text-accent-gold transition-colors text-sm focus:outline-none focus:underline"
+                    href={item.href}
+                    className="text-stone-400 transition hover:text-amber-500"
                   >
-                    {item.id}
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </section>
+          </div>
 
-          {/* Company Section */}
-          <section>
-            <h3 className="text-lg font-serif font-bold mb-6">Company</h3>
-            <ul className="space-y-4">
+          {/* Company */}
+          <div>
+            <h3 className="text-lg font-semibold">Company</h3>
+
+            <ul className="mt-6 space-y-4">
               {companyLinks.map((item) => (
-                <li key={item.id}>
+                <li key={item.name}>
                   <Link
-                    href={item.url}
-                    className="text-gray-400 hover:text-accent-gold transition-colors text-sm focus:outline-none focus:underline"
+                    href={item.href}
+                    className="text-stone-400 transition hover:text-amber-500"
                   >
-                    {item.id}
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </section>
+          </div>
 
-          {/* Contact Section */}
-          <section>
-            <h3 className="text-lg font-serif font-bold mb-6">Contact Us</h3>
-            <address className="space-y-6 not-italic">
-              <div className="flex items-start">
-                <MapPin
-                  className="w-5 h-5 text-accent-gold mt-1 mr-3 flex-shrink-0"
-                  aria-hidden="true"
-                />
-                <span className="text-gray-400 text-sm">
-                  {CONTACT_INFO.address.street},
-                  <br />
-                  {CONTACT_INFO.address.city}, {CONTACT_INFO.address.postal},{" "}
-                  {CONTACT_INFO.address.country}
-                </span>
+          {/* Contact */}
+          <div>
+            <h3 className="text-lg font-semibold">Contact</h3>
+
+            <div className="mt-6 space-y-5">
+              <div className="flex gap-3">
+                <MapPin className="mt-1 h-5 w-5 shrink-0 text-amber-500" />
+                <p className="text-stone-400">
+                  Shah Faisal Plaza, Block B North Nazimabad, Karachi, Pakistan
+                </p>
               </div>
-              <div className="flex items-center">
-                <Phone
-                  className="w-5 h-5 text-accent-gold mr-3 flex-shrink-0"
-                  aria-hidden="true"
-                />
-                <a
-                  href={`tel:${CONTACT_INFO.phoneFormatted}`}
-                  className="text-gray-400 text-sm hover:text-accent-gold transition-colors"
-                >
-                  {CONTACT_INFO.phone}
-                </a>
-              </div>
-              <div className="flex items-center">
-                <Mail
-                  className="w-5 h-5 text-accent-gold mr-3 flex-shrink-0"
-                  aria-hidden="true"
-                />
-                <a
-                  href={`mailto:${CONTACT_INFO.email}`}
-                  className="text-gray-400 text-sm hover:text-accent-gold transition-colors"
-                >
-                  {CONTACT_INFO.email}
-                </a>
-              </div>
-            </address>
-          </section>
+
+              <a
+                href="tel:+923343000580"
+                className="flex items-center gap-3 text-stone-400 transition hover:text-amber-500"
+              >
+                <Phone className="h-5 w-5 text-amber-500" />
+                +92 334 3000580
+              </a>
+
+              <a
+                href="mailto:exports@firmleather.com"
+                className="flex items-center gap-3 text-stone-400 transition hover:text-amber-500"
+              >
+                <Mail className="h-5 w-5 text-amber-500" />
+                exports@firmleather.com
+              </a>
+            </div>
+          </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="border-t border-leather-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-xs mb-4 md:mb-0">
-            &copy; {currentYear} FirmLeather. All rights reserved.
-          </p>
-          <nav className="flex space-x-8" aria-label="Footer links">
+        {/* Bottom */}
+        <div className="mt-16 flex flex-col items-center justify-between gap-5 border-t border-stone-800 pt-8 text-sm text-stone-500 md:flex-row">
+          <p>© {new Date().getFullYear()} FirmLeather. All rights reserved.</p>
+
+          <div className="flex gap-8">
             <Link
-              className="text-gray-500 hover:text-white text-xs transition-colors focus:outline-none focus:underline"
               href={Page.terms_of_service}
+              className="transition hover:text-white"
             >
-              Terms of Service
+              Terms
             </Link>
+
             <Link
-              className="text-gray-500 hover:text-white text-xs transition-colors focus:outline-none focus:underline"
               href={Page.privacy_policy}
+              className="transition hover:text-white"
             >
-              Privacy Policy
+              Privacy
             </Link>
-          </nav>
+          </div>
         </div>
       </div>
-
-      {/* SEO Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(ORGANIZATION_SCHEMA),
-        }}
-      />
     </footer>
   );
-};
+}
