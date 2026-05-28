@@ -224,7 +224,7 @@ export const ProductLineSection = () => {
         <div className="max-w-7xl mx-auto px-6 relative">
           {/* Section Header */}
           <header className="text-center mb-32">
-            <h2 className="font-heading12 text-5xl md:text-5xl font-bold text-heading font-poppins relative inline-block">
+            <h2 className="font-heading12 text-5xl md:text-5xl font-bold text-amber-800 font-poppins relative inline-block">
               Product Line
               <span
                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-sub-heading"

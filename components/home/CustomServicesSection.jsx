@@ -43,7 +43,7 @@ export default function CustomServicesSection() {
             Our Services
           </span>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-4 text-4xl text-amber-800 font-bold tracking-tight md:text-5xl">
             Beyond Off-The-Shelf Leather
           </h2>
 
@@ -70,7 +70,7 @@ export default function CustomServicesSection() {
                   }`}
                 >
                   {/* Image */}
-                  <div className="relative h-[350px] overflow-hidden lg:h-[500px]">
+                  <div className="relative h-[350px]  overflow-hidden lg:h-[500px]">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -88,7 +88,7 @@ export default function CustomServicesSection() {
                       <Icon size={30} />
                     </div>
 
-                    <h3 className="text-3xl font-semibold md:text-4xl">
+                    <h3 className="text-3xl text-amber-800 font-semibold md:text-4xl">
                       {service.title}
                     </h3>
 
@@ -99,12 +99,9 @@ export default function CustomServicesSection() {
                     {/* Features */}
                     <ul className="mt-8 space-y-4">
                       {service.features.map((feature) => (
-                        <li
-                          key={feature}
-                          className="flex items-start gap-3 text-stone-300"
-                        >
+                        <li key={feature} className="flex items-start gap-3 ">
                           <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-amber-500" />
-                          <span>{feature}</span>
+                          <span className="text-amber-600">{feature}</span>
                         </li>
                       ))}
                     </ul>

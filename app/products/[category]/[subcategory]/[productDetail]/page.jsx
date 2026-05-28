@@ -161,7 +161,7 @@ export default function ProductDetailsPage() {
                 {collectionLabel}
               </span>
             </div>
-            <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-normal sm:text-5xl">
+            <h1 className="mt-6 max-w-3xl text-amber-800 text-4xl font-extrabold leading-tight tracking-normal sm:text-5xl">
               {product.title}
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-8 text-stone-300">
@@ -271,7 +271,9 @@ export default function ProductDetailsPage() {
 
         <aside className="self-start rounded-lg border border-stone-200 bg-stone-950 p-6 text-white shadow-sm">
           <PackageCheck className="h-7 w-7 text-amber-300" aria-hidden="true" />
-          <h2 className="mt-4 text-2xl font-extrabold">Ready for production</h2>
+          <h2 className="mt-4 text-2xl font-extrabold text-amber-800">
+            Ready for production
+          </h2>
           <p className="mt-3 text-sm leading-6 text-stone-300">
             Share the product code with your quantity, sizing, color, and label
             requirements for a focused quote.

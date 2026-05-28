@@ -86,7 +86,10 @@ ModelIcon.displayName = "ModelIcon";
 
 // Model Title Component
 const ModelTitle = React.memo(({ title, id }) => (
-  <h4 id={`manufacturing-${id}`} className="text-xl font-bold mb-1">
+  <h4
+    id={`manufacturing-${id}`}
+    className="text-xl font-bold mb-1 text-amber-800"
+  >
     {title}
   </h4>
 ));
@@ -146,7 +149,7 @@ ModelsGrid.displayName = "ModelsGrid";
 // Section Header Component
 const SectionHeader = React.memo(() => (
   <header className="text-center mb-16">
-    <h2 className="text-3xl md:text-5xl font-serif font-bold">
+    <h2 className="text-3xl md:text-5xl font-serif font-bold text-amber-800">
       Manufacturing Models
     </h2>
   </header>
@@ -176,7 +179,7 @@ const ManufacturingModels = () => {
         itemScope
         itemType="https://schema.org/Organization"
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto  px-6">
           <SectionHeader />
           <ModelsGrid models={models} />
         </div>

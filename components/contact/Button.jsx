@@ -17,13 +17,13 @@ const BASE_STYLES =
  */
 const BUTTON_VARIANTS = {
   primary:
-    "border-transparent text-white bg-leather-900 hover:bg-leather-800 focus:ring-leather-900 shadow-md",
+    "border-transparent text-white bg-primary hover:bg-primary-hover focus:ring-primary shadow-md",
   secondary:
-    "border-transparent text-leather-900 bg-leather-200 hover:bg-leather-300 focus:ring-leather-500",
+    "border-transparent text-primary bg-primary/10 hover:bg-primary/20 focus:ring-primary",
   outline:
-    "border-leather-900 text-leather-900 bg-transparent hover:bg-leather-50 focus:ring-leather-900",
+    "border-primary text-primary bg-transparent hover:bg-primary/10 focus:ring-primary",
   ghost:
-    "border-transparent text-leather-700 hover:text-leather-900 hover:bg-leather-100",
+    "border-transparent text-primary hover:text-primary hover:bg-primary/10",
 };
 
 // ============================================================================

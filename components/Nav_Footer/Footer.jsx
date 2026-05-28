@@ -69,7 +69,7 @@ export function Footer() {
         <div className="grid gap-14 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
           {/* Brand */}
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">
+            <h2 className="text-3xl font-bold text-amber-800">
               FIRMLEATHER
               <span className="text-amber-500">.</span>
             </h2>
@@ -102,14 +102,16 @@ export function Footer() {
 
           {/* Collections */}
           <div>
-            <h3 className="text-lg font-semibold">Collections</h3>
+            <h3 className="text-lg font-semibold text-amber-800">
+              Collections
+            </h3>
 
             <ul className="mt-6 space-y-4">
               {collections.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-stone-400 transition hover:text-amber-500"
+                    className="text-stone-400 transition  hover:text-amber-500"
                   >
                     {item.name}
                   </Link>
@@ -120,7 +122,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-lg font-semibold">Company</h3>
+            <h3 className="text-lg font-semibold text-amber-800">Company</h3>
 
             <ul className="mt-6 space-y-4">
               {companyLinks.map((item) => (
@@ -138,7 +140,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold">Contact</h3>
+            <h3 className="text-lg font-semibold text-amber-800">Contact</h3>
 
             <div className="mt-6 space-y-5">
               <div className="flex gap-3">
@@ -168,8 +170,10 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-5 border-t border-stone-800 pt-8 text-sm text-stone-500 md:flex-row">
-          <p>© {new Date().getFullYear()} FirmLeather. All rights reserved.</p>
+        <div className="mt-16 flex flex-col items-center justify-between gap-5 border-t border-stone-800 pt-8 text-sm text-amber-800 md:flex-row">
+          <p className="text-amber-800">
+            © {new Date().getFullYear()} FirmLeather. All rights reserved.
+          </p>
 
           <div className="flex gap-8">
             <Link

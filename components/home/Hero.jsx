@@ -27,11 +27,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:pb-24">
         <div className="max-w-4xl">
-          <span className="mb-5 inline-block text-sm uppercase tracking-[0.3em] text-amber-500">
-            Premium Leather Manufacturer
-          </span>
-
-          <h1 className="text-5xl font-bold leading-[0.95] md:text-7xl lg:text-8xl">
+          <h1 className="text-5xl text-amber-800 font-bold leading-[0.95] md:text-7xl lg:text-8xl">
             From Raw Hides
             <span className="mt-3 block italic text-amber-500">
               To Refined Leather Goods
@@ -55,7 +51,7 @@ export default function Hero() {
 
             <a
               href="#contact"
-              className="rounded-full border border-white/20 px-8 py-4 font-semibold backdrop-blur-sm transition hover:bg-white hover:text-black"
+              className="rounded-full border border-white/20 px-8 py-4 text-amber-500 font-semibold backdrop-blur-sm transition hover:bg-white hover:text-black"
             >
               Partner With Us
             </a>

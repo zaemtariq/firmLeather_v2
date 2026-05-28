@@ -1,8 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
-import { Factory, Send, Mail, Phone } from "lucide-react";
+import {
+  Factory,
+  Send,
+  Mail,
+  Phone,
+  Paperclip,
+  X,
+  FileText,
+} from "lucide-react";
 
 const FEATURES = [
   {
@@ -19,36 +33,215 @@ const FEATURES = [
   },
 ];
 
-export default function ContactSection() {
-  const [form, setForm] = useState({
-    name: "",
-    company: "",
-    email: "",
-    message: "",
+const MAX_ATTACHMENT_SIZE = 5 * 1024 * 1024;
+
+const createInitialForm = () => ({
+  name: "",
+  company: "",
+  email: "",
+  message: "",
+  website: "",
+  startedAt: Date.now(),
+  attachment: null,
+});
+
+const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      resolve(result.split(",")[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
   });
 
-  const [submitted, setSubmitted] = useState(false);
+export default function ContactSection() {
+  const [form, setForm] = useState(createInitialForm);
+  const [captcha, setCaptcha] = useState({
+    answer: "",
+    question: "",
+    token: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState("idle");
+  const [attachmentError, setAttachmentError] = useState("");
+  const fileInputRef = useRef(null);
+  const attachmentPreviewUrl = useMemo(() => {
+    if (!form.attachment?.type.startsWith("image/")) return null;
+    return URL.createObjectURL(form.attachment);
+  }, [form.attachment]);
+
+  const loadCaptcha = useCallback(
+    async (force = false) => {
+      if (captcha.token && !force) return;
+
+      try {
+        const response = await fetch("/api/contact/captcha", {
+          cache: "no-store",
+        });
+        const data = await response.json();
+
+        setCaptcha({
+          answer: "",
+          question: data.question || "",
+          token: data.token || "",
+        });
+      } catch {
+        setErrors((prev) => ({
+          ...prev,
+          captcha: "Unable to load verification. Please refresh the page.",
+        }));
+      }
+    },
+    [captcha.token],
+  );
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
+    }));
+
+    if (errors[name]) {
+      setErrors((prev) => {
+        const nextErrors = { ...prev };
+        delete nextErrors[name];
+        return nextErrors;
+      });
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > MAX_ATTACHMENT_SIZE) {
+      setAttachmentError("Attachment must be 5MB or smaller.");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    setAttachmentError("");
+    setForm((prev) => ({
+      ...prev,
+      attachment: file,
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
+  const removeAttachment = () => {
+    setForm((prev) => ({
+      ...prev,
+      attachment: null,
+    }));
+    setAttachmentError("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
 
-    setTimeout(() => {
-      setSubmitted(false);
-      setForm({
-        name: "",
-        company: "",
-        email: "",
-        message: "",
+  useEffect(() => {
+    return () => {
+      if (attachmentPreviewUrl) URL.revokeObjectURL(attachmentPreviewUrl);
+    };
+  }, [attachmentPreviewUrl]);
+
+  const handleCaptchaChange = (e) => {
+    setCaptcha((prev) => ({
+      ...prev,
+      answer: e.target.value,
+    }));
+
+    if (errors.captcha) {
+      setErrors((prev) => {
+        const nextErrors = { ...prev };
+        delete nextErrors.captcha;
+        return nextErrors;
       });
-    }, 2000);
+    }
+  };
+
+  const validateForm = () => {
+    const nextErrors = {};
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (form.name.trim().length < 2) nextErrors.name = "Enter your full name.";
+    if (form.company.trim().length < 2) {
+      nextErrors.company = "Enter your company.";
+    }
+    if (!emailPattern.test(form.email.trim())) {
+      nextErrors.email = "Enter a valid email address.";
+    }
+    if (form.message.trim().length < 20) {
+      nextErrors.message = "Tell us a little more about your requirements.";
+    }
+    if (!captcha.token || !captcha.answer.trim()) {
+      nextErrors.captcha = "Answer the verification question.";
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const resetForm = () => {
+    setForm(createInitialForm());
+    setAttachmentError("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    loadCaptcha(true);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    setStatus("sending");
+    setErrors({});
+
+    try {
+      const payload = {
+        identifier: "partner_with_us",
+        name: form.name,
+        company: form.company,
+        email: form.email,
+        message: form.message,
+        website: form.website,
+        startedAt: form.startedAt || Date.now(),
+        captchaAnswer: captcha.answer,
+        captchaToken: captcha.token,
+      };
+
+      if (form.attachment) {
+        payload.attachmentName = form.attachment.name;
+        payload.attachmentType = form.attachment.type;
+        payload.attachmentBase64 = await toBase64(form.attachment);
+      }
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrors(data.errors || { form: data.message || "Unable to send." });
+        setStatus("idle");
+        loadCaptcha();
+        return;
+      }
+
+      setStatus("sent");
+      resetForm();
+    } catch {
+      setErrors({
+        form: "Unable to send your inquiry right now. Please try again.",
+      });
+      setStatus("idle");
+    }
   };
 
   return (
@@ -75,7 +268,7 @@ export default function ContactSection() {
               Exports & Wholesale
             </span>
 
-            <h2 className="mt-4 text-4xl font-bold leading-tight md:text-6xl">
+            <h2 className="mt-4 text-4xl font-bold text-amber-800 md:text-6xl">
               Partner With
               <span className="block text-amber-500 italic">FirmLeather</span>
             </h2>
@@ -110,11 +303,19 @@ export default function ContactSection() {
             {/* Contact Info */}
             <div className="mt-12 border-t border-white/10 pt-8 space-y-4">
               <a
-                href="mailto:exports@firmleather.com"
+                href="mailto:inquire@firmleather.com"
                 className="flex items-center gap-3 text-stone-300 transition hover:text-white"
               >
                 <Mail className="h-5 w-5 text-amber-500" />
-                exports@firmleather.com
+                info@firmleather.com
+              </a>
+
+              <a
+                href="mailto:inquire@firmleather.com"
+                className="flex items-center gap-3 text-stone-300 transition hover:text-white"
+              >
+                <Mail className="h-5 w-5 text-amber-500" />
+                contact@firmleather.com
               </a>
 
               <a
@@ -129,62 +330,208 @@ export default function ContactSection() {
 
           {/* Form */}
           <div className="rounded-[2rem] border border-stone-800 bg-stone-900/70 p-8 backdrop-blur-sm md:p-10">
-            <h3 className="text-3xl font-semibold">Send an Inquiry</h3>
+            <h3 className="text-3xl font-semibold text-amber-800">
+              Send an Inquiry
+            </h3>
 
-            <p className="mt-2 text-stone-400">
+            <p className="mt-2 text-stone-300">
               Tell us about your requirements and our team will respond within
               24 hours.
             </p>
 
-            <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-              <div className="grid gap-5 md:grid-cols-2">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Full Name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  className="rounded-2xl border border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
-                />
+            <form
+              onSubmit={handleSubmit}
+              onFocusCapture={() => loadCaptcha()}
+              className="mt-8 space-y-5"
+              noValidate
+            >
+              <input
+                type="text"
+                name="website"
+                value={form.website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
 
-                <input
-                  type="text"
-                  name="company"
-                  placeholder="Company"
-                  value={form.company}
-                  onChange={handleChange}
-                  required
-                  className="rounded-2xl border border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
-                />
+              <div className="grid gap-5 md:grid-cols-2">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    aria-invalid={Boolean(errors.name)}
+                    className="w-full rounded-2xl border text-stone-300 border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
+                  />
+                  {errors.name && (
+                    <p className="mt-2 text-sm text-red-300">{errors.name}</p>
+                  )}
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    name="company"
+                    placeholder="Company"
+                    value={form.company}
+                    onChange={handleChange}
+                    required
+                    aria-invalid={Boolean(errors.company)}
+                    className="w-full rounded-2xl text-stone-300 border border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
+                  />
+                  {errors.company && (
+                    <p className="mt-2 text-sm text-red-300">
+                      {errors.company}
+                    </p>
+                  )}
+                </div>
               </div>
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className="w-full rounded-2xl border border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
-              />
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.email)}
+                  className="w-full rounded-2xl border text-stone-300 border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
+                />
+                {errors.email && (
+                  <p className="mt-2 text-sm text-red-300">{errors.email}</p>
+                )}
+              </div>
 
-              <textarea
-                name="message"
-                rows={5}
-                placeholder="Tell us about your project, order quantity, or product requirements..."
-                value={form.message}
-                onChange={handleChange}
-                required
-                className="w-full resize-none rounded-2xl border border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
-              />
+              <div>
+                <textarea
+                  name="message"
+                  rows={5}
+                  placeholder="Tell us about your project, order quantity, or product requirements..."
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.message)}
+                  className="w-full resize-none text-stone-300 rounded-2xl border border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
+                />
+                {errors.message && (
+                  <p className="mt-2 text-sm text-red-300">{errors.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-stone-300">
+                  Attachment (optional)
+                </label>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <input
+                    ref={fileInputRef}
+                    id="home-contact-attachment"
+                    type="file"
+                    accept="image/*,.pdf,.doc,.docx"
+                    onChange={handleFileChange}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor="home-contact-attachment"
+                    className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl border border-stone-700 bg-stone-950 px-5 py-3 text-sm font-semibold text-stone-200 transition hover:border-amber-500 hover:text-white"
+                  >
+                    <Paperclip className="h-4 w-4 text-amber-500" />
+                    Attach file
+                  </label>
+                  <span className="min-w-0 text-sm text-stone-400">
+                    {form.attachment
+                      ? form.attachment.name
+                      : "No file selected"}
+                  </span>
+                </div>
+                <p className="mt-2 text-xs text-stone-500">
+                  Images, PDF, DOC, or DOCX up to 5MB.
+                </p>
+                {attachmentError && (
+                  <p className="mt-2 text-sm text-red-300">{attachmentError}</p>
+                )}
+
+                {form.attachment && (
+                  <div className="mt-3 flex items-center gap-3 rounded-2xl border border-stone-700 bg-stone-950 p-3 text-sm text-stone-300">
+                    {attachmentPreviewUrl ? (
+                      <img
+                        src={attachmentPreviewUrl}
+                        alt="Attachment preview"
+                        className="h-12 w-12 rounded-xl object-cover"
+                      />
+                    ) : (
+                      <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-stone-900 text-amber-500">
+                        <FileText className="h-5 w-5" />
+                      </span>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate font-medium text-stone-200">
+                        {form.attachment.name}
+                      </p>
+                      <p className="text-xs text-stone-500">
+                        {(form.attachment.size / 1024).toFixed(1)} KB
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={removeAttachment}
+                      aria-label="Remove attachment"
+                      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-stone-400 transition hover:bg-red-500/10 hover:text-red-300"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <label
+                  htmlFor="home-contact-captcha"
+                  className="mb-2 block text-sm font-semibold text-stone-300"
+                >
+                  Verification: {captcha.question || "Loading..."}
+                </label>
+                <input
+                  id="home-contact-captcha"
+                  type="text"
+                  inputMode="numeric"
+                  name="captchaAnswer"
+                  placeholder="Type the answer"
+                  value={captcha.answer}
+                  onChange={handleCaptchaChange}
+                  required
+                  aria-invalid={Boolean(errors.captcha)}
+                  className="w-full rounded-2xl text-stone-300 border border-stone-700 bg-stone-950 px-5 py-4 outline-none transition focus:border-amber-500"
+                />
+                {errors.captcha && (
+                  <p className="mt-2 text-sm text-red-300">{errors.captcha}</p>
+                )}
+              </div>
+
+              {errors.form && (
+                <p className="rounded-2xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                  {errors.form}
+                </p>
+              )}
+
+              {status === "sent" && (
+                <p className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+                  Your inquiry has been sent. Our team will respond shortly.
+                </p>
+              )}
 
               <button
                 type="submit"
-                disabled={submitted}
+                disabled={status === "sending"}
                 className="w-full rounded-2xl bg-amber-500 py-4 font-semibold text-black transition hover:opacity-90 disabled:opacity-50"
               >
-                {submitted ? "Inquiry Sent" : "Submit Inquiry"}
+                {status === "sending" ? "Sending..." : "Submit Inquiry"}
               </button>
             </form>
           </div>

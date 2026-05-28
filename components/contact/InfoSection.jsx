@@ -40,8 +40,10 @@ const PHONE_INFO = {
  * @type {Object}
  */
 const EMAIL_INFO = {
-  primary: "hello@firmleather.com",
+  primary: "info@firmleather.com",
   support: "support@firmleather.com",
+  customize: "customization@firmleather.com",
+  exports: "exports@firmleather.com",
 };
 
 /**
@@ -49,8 +51,8 @@ const EMAIL_INFO = {
  * @type {Object}
  */
 const RESPONSE_TIME_INFO = {
-  general: "General Inquiries: 24h",
-  custom: "Custom Orders: 48h",
+  general: "General Inquiries: 12h",
+  custom: "Custom Orders Inquiries: 12h",
 };
 
 /**
@@ -86,8 +88,13 @@ const CONTACT_ITEMS = [
   {
     id: "email",
     icon: "email",
-    title: "Email",
-    content: [EMAIL_INFO.primary, EMAIL_INFO.support],
+    title: "FirmLeather Emails",
+    content: [
+      EMAIL_INFO.primary,
+      EMAIL_INFO.support,
+      EMAIL_INFO.customize,
+      EMAIL_INFO.exports,
+    ],
     type: "email",
   },
   {
