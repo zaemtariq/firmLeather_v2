@@ -18,7 +18,7 @@ const categoryCopy = {
     title: "Leather Products",
     eyebrow: "Export-ready collections",
     description:
-      "Browse finished leather, apparel, accessories, and sports gear built for private labels, wholesalers, and global buyers.",
+      "Browse finished leather, apparel, accessories, pet accessories, and sports gear built for private labels, wholesalers, and global buyers.",
   },
   accessories: {
     title: "Leather Accessories",
@@ -37,6 +37,12 @@ const categoryCopy = {
     eyebrow: "Raw materials for makers",
     description:
       "Finished and crust leather prepared for footwear, garments, accessories, and industrial applications.",
+  },
+  "pet-accessories": {
+    title: "Leather Pet Accessories",
+    eyebrow: "Collars and pet goods",
+    description:
+      "Premium leather pet collars and accessories made with durable hardware, reinforced stitching, and custom branding options.",
   },
   sports: {
     title: "Sports Leather Gear",

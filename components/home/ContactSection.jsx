@@ -291,7 +291,9 @@ export default function ContactSection() {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-semibold">{item.title}</h3>
+                      <h3 className="text-xl font-semibold text-amber-800">
+                        {item.title}
+                      </h3>
 
                       <p className="mt-2 text-stone-400">{item.description}</p>
                     </div>

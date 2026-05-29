@@ -32,6 +32,10 @@ const productCategories = [
     path: "/products/accessories",
     subcategories: ["leather-belts", "leather-wallets", "rfid-blocking-wallets"],
   },
+  {
+    path: "/products/pet-accessories",
+    subcategories: ["pet-collars"],
+  },
 ];
 
 const createEntry = ({ path, priority, changeFrequency }) => ({

@@ -8,7 +8,7 @@ const categorySeo = {
   all: {
     title: "Leather Products | FirmLeather",
     description:
-      "Browse FirmLeather's export-ready leather products, including finished leather, leather apparel, accessories, sports leather gear, and wholesale private label options.",
+      "Browse FirmLeather's export-ready leather products, including finished leather, leather apparel, accessories, pet accessories, sports leather gear, and wholesale private label options.",
   },
   accessories: {
     title: "Leather Accessories Manufacturer | FirmLeather",
@@ -24,6 +24,11 @@ const categorySeo = {
     title: "Finished Leather Supplier | FirmLeather",
     description:
       "Source finished and crust leather prepared for footwear, garments, accessories, sports goods, and industrial leather applications.",
+  },
+  "pet-accessories": {
+    title: "Leather Pet Accessories Manufacturer | FirmLeather",
+    description:
+      "Explore wholesale leather pet accessories including premium collars, AirTag pet collars, custom branding, and private label leather pet goods.",
   },
   sports: {
     title: "Sports Leather Gear Manufacturer | FirmLeather",

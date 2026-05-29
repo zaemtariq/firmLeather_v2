@@ -1,6 +1,7 @@
 import accessories from "@/components/ProductsData/accessories/accessories";
 import apparel from "@/components/ProductsData/apparel/apparel";
 import finishedLeather from "@/components/ProductsData/finished_leather/finished_leather";
+import petAccessories from "@/components/ProductsData/pet-accessories/accessories";
 import sports from "@/components/ProductsData/sports_gear/sports_gear";
 
 export const fallbackProductImage =
@@ -10,6 +11,7 @@ export const productGroups = {
   accessories,
   apparel,
   "finished-leather": finishedLeather,
+  "pet-accessories": petAccessories,
   sports,
 };
 

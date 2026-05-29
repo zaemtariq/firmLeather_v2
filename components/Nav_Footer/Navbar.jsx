@@ -43,9 +43,10 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", updateNavbar);
   }, []);
 
-  const navClasses = isScrolled || isOpen
-    ? "border-stone-200 bg-white/95 shadow-sm backdrop-blur"
-    : "border-transparent bg-white/85 backdrop-blur-sm md:bg-transparent";
+  const navClasses =
+    isScrolled || isOpen
+      ? "border-stone-200 bg-white/95 shadow-sm backdrop-blur"
+      : "border-transparent bg-white/85 backdrop-blur-sm md:bg-transparent";
 
   return (
     <header
@@ -115,7 +116,7 @@ export const Navbar = () => {
 
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-full text-stone-900 transition hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full text-stone-100 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 lg:hidden"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -147,7 +148,7 @@ export const Navbar = () => {
                   className={`flex items-center gap-3 rounded-lg px-4 py-3 text-base font-semibold transition ${
                     active
                       ? "bg-leather-100 text-primary"
-                      : "text-stone-800 hover:bg-stone-100 hover:text-primary"
+                      : "text-stone-800  hover:text-primary"
                   }`}
                 >
                   <Icon className="h-5 w-5" aria-hidden="true" />

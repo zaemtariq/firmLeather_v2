@@ -1,4 +1,4 @@
-import { LayoutGrid, Layers, Wallet, Trophy, Shirt } from "lucide-react";
+import { LayoutGrid, Layers, PawPrint, Wallet, Trophy, Shirt } from "lucide-react";
 export const Page = {
   Home: "/",
   Products: "/products",
@@ -139,6 +139,15 @@ export const PRODUCT_LINE = [
     imageUrl: "/siteImages/factoryIMages/leather_accessories.jpg",
     side: "left",
   },
+  {
+    id: 5,
+    title: "PET ACCESSORIES",
+    Url: "/products/pet-accessories",
+    description:
+      "Premium leather pet accessories including handcrafted collars with durable hardware, reinforced stitching, and private-label customization for pet brands, retailers, and wholesale buyers.",
+    imageUrl: "/Pet-Accessories/pet_airtag_leather_collar_black.png",
+    side: "right",
+  },
 ];
 
 export const QUALITY_STATS = [
@@ -163,6 +172,7 @@ export const CATEGORIES_DATA = [
       "cowboy-chaps",
       "golf-gloves",
       "baseball-batting-gloves",
+      "pet-collars",
     ],
   },
   {
@@ -182,6 +192,12 @@ export const CATEGORIES_DATA = [
     label: "ACCESSORIES",
     icon: Wallet,
     sub_cat: ["leather-belts", "leather-wallets", "rfid-blocking-wallets"],
+  },
+  {
+    id: "pet-accessories",
+    label: "PET ACCESSORIES",
+    icon: PawPrint,
+    sub_cat: ["pet-collars"],
   },
   {
     id: "finished-leather",

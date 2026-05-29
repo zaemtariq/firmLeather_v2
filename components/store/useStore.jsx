@@ -4,6 +4,7 @@ import { create } from "zustand";
 import accessoriesData from "../ProductsData/accessories/accessories";
 import apparelData from "../ProductsData/apparel/apparel";
 import finishedLeatherData from "../ProductsData/finished_leather/finished_leather";
+import petAccessoriesData from "../ProductsData/pet-accessories/accessories";
 import sportsGearData from "../ProductsData/sports_gear/sports_gear";
 
 // ============================================================================
@@ -18,6 +19,7 @@ const PRODUCT_CATEGORIES = {
   accessories: accessoriesData,
   apparel: apparelData,
   "finished-leather": finishedLeatherData,
+  "pet-accessories": petAccessoriesData,
   sports: sportsGearData,
 };
 
