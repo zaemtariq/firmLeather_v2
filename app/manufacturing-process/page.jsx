@@ -50,7 +50,7 @@ function HeroSection() {
         muted
         playsInline
         className="absolute inset-0 h-full w-full object-cover opacity-45"
-        aria-label="Firm Leather factory process video"
+        aria-label="FirmLeather factory process video"
       >
         <source src={HERO.videoUrl} type="video/mp4" />
       </video>
@@ -134,7 +134,7 @@ function ProcessStep({ process, index }) {
             playsInline
             className="aspect-[16/10] h-full w-full object-cover"
             aria-label={`${process.name} manufacturing process video`}
-            title={`${process.name} at Firm Leather`}
+            title={`${process.name} at FirmLeather`}
           >
             <source src={cleanAssetPath(process.videoUrl)} type="video/mp4" />
             Your browser does not support the video tag.

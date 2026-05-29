@@ -2,11 +2,11 @@ import React from "react";
 import Style from "./TermofServiceOverview.module.css";
 
 export const metadata = {
-  title: "Terms of Service - Firm Leather",
+  title: "Terms of Service - FirmLeather",
   description:
-    "Review the Terms of Service for Firm Leather. Understand our guidelines, user responsibilities, product descriptions, and legal compliance.",
+    "Review the Terms of Service for FirmLeather. Understand our guidelines, user responsibilities, product descriptions, and legal compliance.",
   keywords:
-    "Terms of Service, Firm Leather Terms, User Agreement, Legal Policy, Product Accuracy, Service Terms, Leather Goods Compliance, Governing Law",
+    "Terms of Service, FirmLeather Terms, User Agreement, Legal Policy, Product Accuracy, Service Terms, Leather Goods Compliance, Governing Law",
 };
 
 const TOS_SECTIONS = [
@@ -14,7 +14,7 @@ const TOS_SECTIONS = [
     id: "overview",
     title: "Terms of Service Overview",
     content:
-      "Welcome to Firm Leather! By using our website, you agree to these Terms of Service. Throughout these terms, “we”, “us”, and “our” refer to Firm Leather. Your use of our website constitutes acceptance of these terms, including any additional policies referenced herein. These terms apply to all users of the site, whether browsing, purchasing, or contributing content.",
+      "Welcome to FirmLeather! By using our website, you agree to these Terms of Service. Throughout these terms, “we”, “us”, and “our” refer to FirmLeather. Your use of our website constitutes acceptance of these terms, including any additional policies referenced herein. These terms apply to all users of the site, whether browsing, purchasing, or contributing content.",
   },
   {
     id: "accuracy",
@@ -51,19 +51,19 @@ const TOS_SECTIONS = [
     id: "governing-law",
     title: "Governing Law",
     content:
-      "These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of the jurisdiction in which Firm Leather operates.",
+      "These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of the jurisdiction in which FirmLeather operates.",
   },
 ];
 
 const TOS_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Terms of Service - Firm Leather",
+  name: "Terms of Service - FirmLeather",
   description:
-    "The legal terms and conditions for using the Firm Leather website and services.",
+    "The legal terms and conditions for using the FirmLeather website and services.",
   publisher: {
     "@type": "Organization",
-    name: "Firm Leather",
+    name: "FirmLeather",
   },
 };
 

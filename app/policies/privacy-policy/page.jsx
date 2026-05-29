@@ -2,11 +2,11 @@ import React from "react";
 import Style from "./PrivacyPolicy.module.css";
 
 export const metadata = {
-  title: "Privacy Policy - Firm Leather",
+  title: "Privacy Policy - FirmLeather",
   description:
-    "Read our Privacy Policy to understand how Firm Leather collects, uses, and protects your personal information. We prioritize your privacy and data security.",
+    "Read our Privacy Policy to understand how FirmLeather collects, uses, and protects your personal information. We prioritize your privacy and data security.",
   keywords:
-    "Privacy Policy, Data Protection, Personal Information, Data Security, User Privacy, Information Collection, Data Usage, Data Privacy, Firm Leather Privacy Policy, Protecting Personal Data, User Data Security, Online Privacy",
+    "Privacy Policy, Data Protection, Personal Information, Data Security, User Privacy, Information Collection, Data Usage, Data Privacy, FirmLeather Privacy Policy, Protecting Personal Data, User Data Security, Online Privacy",
 };
 
 const CONTACT_INFO = {
@@ -83,17 +83,17 @@ const PRIVACY_SCHEMA = {
       "@type": "WebPage",
       "@id": "https://firmleather.com/policies/privacy-policy#webpage",
       url: "https://firmleather.com/policies/privacy-policy",
-      name: "Privacy Policy - Firm Leather",
+      name: "Privacy Policy - FirmLeather",
       description:
         "Our comprehensive privacy policy outlining how we collect, use, and protect your personal information.",
     },
     {
       "@type": "PrivacyPolicy",
-      name: "Firm Leather Privacy Policy",
+      name: "FirmLeather Privacy Policy",
       url: "https://firmleather.com/policies/privacy-policy",
       publisher: {
         "@type": "Organization",
-        name: "Firm Leather",
+        name: "FirmLeather",
         url: "https://firmleather.com",
       },
     },

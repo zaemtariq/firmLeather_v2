@@ -14,7 +14,7 @@ export const FACTORY_STATIONS = [
     id: "selection-tanning",
     name: "Raw Hide Selection & Vegetable Tanning",
     description:
-      "The foundation of premium leather quality begins with selecting only the finest full-grain and top-grain hides. An ancient, organic vegetable tanning process using natural tannins derived from tree barks and plants — producing rich, durable, and eco-friendly finished leather.",
+      "The foundation of premium leather quality begins with selecting only the finest full-grain and top-grain hides. An ancient, organic vegetable tanning process uses natural tannins derived from tree barks and plants to produce rich, durable, and eco-friendly finished leather.",
     imageUrl: "/siteImages/factory/tanning.jpg",
     videoUrl: "./siteVideo/manufacturing_process/tanning_process.mp4",
     details: [
@@ -27,7 +27,7 @@ export const FACTORY_STATIONS = [
     id: "quality-check",
     name: "Finished Leather Quality Control (QC)",
     description:
-      "A rigorous multi-point leather inspection process to ensure every inch of finished leather meets international export quality standards — trusted by global leather importers, brands, and manufacturers.",
+      "A rigorous multi-point leather inspection process ensures every inch of finished leather meets international export quality standards trusted by global leather importers, brands, and manufacturers.",
     imageUrl: "/siteImages/factory/quality-check.jpg",
     videoUrl: "./siteVideo/manufacturing_process/quality_check.mp4",
     details: [
@@ -41,7 +41,7 @@ export const FACTORY_STATIONS = [
     id: "cutting",
     name: "Precision Leather Cutting & Sizing",
     description:
-      "Marrying traditional master leather craftsmanship with modern laser-guided cutting accuracy for exact dimensions and minimal material waste — optimized for high-volume leather production.",
+      "Marrying traditional master leather craftsmanship with modern laser-guided cutting accuracy for exact dimensions and minimal material waste, optimized for high-volume leather production.",
     imageUrl: "/siteImages/factory/cutting.jpg",
     videoUrl: "./siteVideo/manufacturing_process/laser_cutting.mp4",
     details: [
@@ -55,7 +55,7 @@ export const FACTORY_STATIONS = [
     id: "stitching",
     name: "Artisan Leather Stitching & Assembly",
     description:
-      "Each leather piece is hand-assembled by skilled artisans with decades of experience in premium leather goods construction — ensuring superior durability and craftsmanship in every product.",
+      "Each leather piece is hand-assembled by skilled artisans with decades of experience in premium leather goods construction, ensuring superior durability and craftsmanship in every product.",
     imageUrl: "/siteImages/factory/stitching.jpg",
     videoUrl: "./siteVideo/manufacturing_process/stitching_process.mp4",
     details: [
@@ -69,7 +69,7 @@ export const FACTORY_STATIONS = [
     id: "qc",
     name: "Sizing & Final Leather Quality Control",
     description:
-      "A comprehensive multi-point final inspection stage where every stitch, edge, and hardware component is verified against master samples — ensuring export-ready leather goods that meet international buyer specifications.",
+      "A comprehensive multi-point final inspection stage where every stitch, edge, and hardware component is verified against master samples, ensuring export-ready leather goods that meet international buyer specifications.",
     imageUrl: "/siteImages/factory/qc.jpg",
     videoUrl: "./siteVideo/manufacturing_process/sizing_quality_check.mp4",
     details: [
@@ -83,7 +83,7 @@ export const FACTORY_STATIONS = [
     id: "finishing-packing",
     name: "Premium Finishing & Custom Export Packaging",
     description:
-      "The final touch of luxury leather finishing — from hand-polishing and conditioning to protective, eco-friendly custom packaging designed for safe international shipping and premium brand presentation.",
+      "The final touch of luxury leather finishing, from hand-polishing and conditioning to protective, eco-friendly custom packaging designed for safe international shipping and premium brand presentation.",
     imageUrl: "/siteImages/factory/packing.jpg",
     videoUrl: "./siteVideo/manufacturing_process/finishing_packing.mp4",
     details: [
@@ -108,7 +108,7 @@ export const PRODUCT_LINE = [
     title: "FINISHED LEATHERS",
     Url: "/products/finished-leather",
     description:
-      "Expertly tanned Cabretta, Cow, and Buffalo finished leathers tailored for premium wholesale and retail markets. We specialize in robust, full-grain hides celebrated for their natural grain pattern, enduring strength, and superior surface finish — ideal for footwear uppers, leather lining, garment manufacturing, and various industrial leather applications.",
+      "Expertly tanned Cabretta, cow, and buffalo finished leathers tailored for premium wholesale and retail markets. We specialize in robust, full-grain hides celebrated for their natural grain pattern, enduring strength, and superior surface finish, ideal for footwear uppers, leather lining, garment manufacturing, and various industrial leather applications.",
     imageUrl: "/siteImages/factoryIMages/raw_leather (2).jpg",
     side: "right",
   },
@@ -117,7 +117,7 @@ export const PRODUCT_LINE = [
     title: "SPORTS LEATHER GEAR",
     Url: "/products/sports",
     description:
-      "High-performance sports leathers engineered for the global athletic and sporting goods industry. Our specialized leather production includes professional-grade baseballs, premium Cabretta golf gloves, and durable leather golf belts — designed for maximum flexibility, superior grip, and long-lasting wear in competitive sports environments.",
+      "High-performance sports leathers engineered for the global athletic and sporting goods industry. Our specialized leather production includes professional-grade baseballs, premium Cabretta golf gloves, and durable leather golf belts, designed for maximum flexibility, superior grip, and long-lasting wear in competitive sports environments.",
     imageUrl: "/siteImages/factoryIMages/sports_gear (2).jpg",
     side: "left",
   },

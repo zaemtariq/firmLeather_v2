@@ -303,7 +303,7 @@ export default function ContactSection() {
             {/* Contact Info */}
             <div className="mt-12 border-t border-white/10 pt-8 space-y-4">
               <a
-                href="mailto:inquire@firmleather.com"
+                href="mailto:info@firmleather.com"
                 className="flex items-center gap-3 text-stone-300 transition hover:text-white"
               >
                 <Mail className="h-5 w-5 text-amber-500" />
@@ -311,7 +311,7 @@ export default function ContactSection() {
               </a>
 
               <a
-                href="mailto:inquire@firmleather.com"
+                href="mailto:contact@firmleather.com"
                 className="flex items-center gap-3 text-stone-300 transition hover:text-white"
               >
                 <Mail className="h-5 w-5 text-amber-500" />

@@ -10,7 +10,7 @@ const HERO_CONFIG = {
   location: "Sialkot, PK",
   headline: "Let's craft",
   tagline: "something lasting.",
-  description: "Get in touch with Firm Leather for inquiries and orders",
+  description: "Get in touch with FirmLeather for inquiries and orders",
 };
 
 const SITE_URL = "https://firmleather.com";
@@ -23,9 +23,9 @@ const generateContactSchema = () => ({
       "@type": "WebPage",
       "@id": `${CONTACT_URL}#webpage`,
       url: CONTACT_URL,
-      name: "Contact Firm Leather",
+      name: "Contact FirmLeather",
       description:
-        "Contact Firm Leather for wholesale leather products, private label manufacturing, samples, and export inquiries.",
+        "Contact FirmLeather for wholesale leather products, private label manufacturing, samples, and export inquiries.",
       isPartOf: {
         "@id": `${SITE_URL}/#website`,
       },
@@ -33,7 +33,7 @@ const generateContactSchema = () => ({
     {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: "Firm Leather",
+      name: "FirmLeather",
       url: SITE_URL,
       logo: `${SITE_URL}/site-logo/favicon.svg`,
       description:

@@ -6,27 +6,27 @@ const defaultImage = "/siteImages/factoryIMages/leather_manufacturer.jpg";
 
 const categorySeo = {
   all: {
-    title: "Leather Products | Firm Leather",
+    title: "Leather Products | FirmLeather",
     description:
-      "Browse Firm Leather's export-ready leather products, including finished leather, leather apparel, accessories, sports leather gear, and wholesale private label options.",
+      "Browse FirmLeather's export-ready leather products, including finished leather, leather apparel, accessories, sports leather gear, and wholesale private label options.",
   },
   accessories: {
-    title: "Leather Accessories Manufacturer | Firm Leather",
+    title: "Leather Accessories Manufacturer | FirmLeather",
     description:
-      "Explore wholesale leather accessories including belts, wallets, bags, and custom private label leather goods manufactured by Firm Leather.",
+      "Explore wholesale leather accessories including belts, wallets, bags, and custom private label leather goods manufactured by FirmLeather.",
   },
   apparel: {
-    title: "Leather Apparel Manufacturer | Firm Leather",
+    title: "Leather Apparel Manufacturer | FirmLeather",
     description:
       "Discover premium leather apparel manufacturing for jackets, coats, custom garments, fashion brands, wholesalers, and private label buyers.",
   },
   "finished-leather": {
-    title: "Finished Leather Supplier | Firm Leather",
+    title: "Finished Leather Supplier | FirmLeather",
     description:
       "Source finished and crust leather prepared for footwear, garments, accessories, sports goods, and industrial leather applications.",
   },
   sports: {
-    title: "Sports Leather Gear Manufacturer | Firm Leather",
+    title: "Sports Leather Gear Manufacturer | FirmLeather",
     description:
       "Browse sports leather gear including golf gloves and baseball batting gloves made for grip, durability, repeatable fit, and export production.",
   },
@@ -37,8 +37,8 @@ export const absoluteUrl = (path = "/") =>
 
 export const getCategorySeo = (category = "all") =>
   categorySeo[category] || {
-    title: `${formatLabel(category)} Leather Products | Firm Leather`,
-    description: `Explore Firm Leather ${formatLabel(
+    title: `${formatLabel(category)} Leather Products | FirmLeather`,
+    description: `Explore FirmLeather ${formatLabel(
       category,
     ).toLowerCase()} products, specifications, and wholesale quote options.`,
   };
@@ -52,10 +52,10 @@ export const buildListingMetadata = ({
   const seo = getCategorySeo(knownCategory ? category : "all");
   const subcategoryLabel = subcategory ? formatLabel(subcategory) : "";
   const title = subcategoryLabel
-    ? `${subcategoryLabel} | ${formatLabel(category)} | Firm Leather`
+    ? `${subcategoryLabel} | ${formatLabel(category)} | FirmLeather`
     : seo.title;
   const description = subcategoryLabel
-    ? `Browse Firm Leather ${subcategoryLabel.toLowerCase()} products for wholesale, custom manufacturing, private label production, and export-ready leather goods.`
+    ? `Browse FirmLeather ${subcategoryLabel.toLowerCase()} products for wholesale, custom manufacturing, private label production, and export-ready leather goods.`
     : seo.description;
 
   return {
@@ -63,7 +63,7 @@ export const buildListingMetadata = ({
     title,
     description,
     keywords: [
-      "Firm Leather",
+      "FirmLeather",
       "leather products",
       "leather manufacturer",
       "wholesale leather supplier",
@@ -76,7 +76,7 @@ export const buildListingMetadata = ({
       title,
       description,
       url: canonical,
-      siteName: "Firm Leather",
+      siteName: "FirmLeather",
       type: "website",
       locale: "en_US",
       images: [
@@ -84,7 +84,7 @@ export const buildListingMetadata = ({
           url: defaultImage,
           width: 1200,
           height: 630,
-          alt: "Firm Leather product manufacturing",
+          alt: "FirmLeather product manufacturing",
         },
       ],
     },
@@ -113,30 +113,30 @@ export const buildProductMetadata = ({
   const description =
     product?.description ||
     product?.longDescription ||
-    `Explore Firm Leather ${categoryName.toLowerCase()} product details, specifications, minimum order quantity, and quote options.`;
+    `Explore FirmLeather ${categoryName.toLowerCase()} product details, specifications, minimum order quantity, and quote options.`;
   const canonical = `/products/${category}/${subcategory}/${productCode}`;
   const image = product ? getProductImage(product) : defaultImage;
 
   return {
     metadataBase: new URL(siteUrl),
-    title: `${productName} | Firm Leather`,
+    title: `${productName} | FirmLeather`,
     description,
     keywords: [
       productName,
       product?.productCode,
       categoryName,
       subcategoryName,
-      "Firm Leather",
+      "FirmLeather",
       "leather products",
       "custom leather manufacturing",
       "wholesale leather supplier",
     ].filter(Boolean),
     alternates: { canonical },
     openGraph: {
-      title: `${productName} | Firm Leather`,
+      title: `${productName} | FirmLeather`,
       description,
       url: canonical,
-      siteName: "Firm Leather",
+      siteName: "FirmLeather",
       type: "website",
       locale: "en_US",
       images: [
@@ -150,7 +150,7 @@ export const buildProductMetadata = ({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${productName} | Firm Leather`,
+      title: `${productName} | FirmLeather`,
       description,
       images: [image],
     },

@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Factory Tour - Firm Leather",
+  title: "Factory Tour - FirmLeather",
   description:
-    "Take a virtual tour of Firm Leather's state-of-the-art manufacturing facility in Sialkot, Pakistan. See how we craft premium leather products.",
+    "Take a virtual tour of FirmLeather's state-of-the-art manufacturing facility in Sialkot, Pakistan. See how we craft premium leather products.",
   keywords:
     "factory tour, leather manufacturing, production facility, leather factory, manufacturing process",
   icons: {
@@ -11,19 +11,19 @@ export const metadata = {
     canonical: "https://firmleather.com/factory-tour",
   },
   openGraph: {
-    title: "Factory Tour - Firm Leather",
+    title: "Factory Tour - FirmLeather",
     description:
-      "Take a virtual tour of Firm Leather's state-of-the-art manufacturing facility in Sialkot, Pakistan.",
+      "Take a virtual tour of FirmLeather's state-of-the-art manufacturing facility in Sialkot, Pakistan.",
     url: "https://firmleather.com/factory-tour",
-    siteName: "Firm Leather",
+    siteName: "FirmLeather",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Factory Tour - Firm Leather",
+    title: "Factory Tour - FirmLeather",
     description:
-      "Take a virtual tour of Firm Leather's state-of-the-art manufacturing facility in Sialkot, Pakistan.",
+      "Take a virtual tour of FirmLeather's state-of-the-art manufacturing facility in Sialkot, Pakistan.",
   },
   robots: {
     index: true,

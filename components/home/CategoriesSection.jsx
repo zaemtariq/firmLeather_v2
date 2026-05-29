@@ -111,7 +111,7 @@ const CATEGORIES = [
     categoryKey: "FINISHED LEATHER",
     image: "/siteImages/factoryIMages/raw_leather (2).jpg",
     imageAlt:
-      "Finished leather hides and raw materials for manufacturing - chrome and vegetable tanned leather from FirmLeather",
+      "Finished leather hides and raw materials for manufacturing - chrome and vegetable-tanned leather from FirmLeather",
     description:
       "High-quality finished leather hides and raw materials including chrome and vegetable-tanned options",
     features: [

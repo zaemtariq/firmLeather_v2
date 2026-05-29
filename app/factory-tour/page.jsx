@@ -54,9 +54,9 @@ const generateFactoryTourSchema = () => ({
       "@type": "WebPage",
       "@id": "https://firmleather.com/factory-tour#webpage",
       url: "https://firmleather.com/factory-tour",
-      name: "Factory Tour - Firm Leather",
+      name: "Factory Tour - FirmLeather",
       description:
-        "Experience the artistry and precision behind Firm Leather's premium leather manufacturing process.",
+        "Experience the artistry and precision behind FirmLeather's premium leather manufacturing process.",
       isPartOf: {
         "@id": "https://firmleather.com/#website",
       },
@@ -65,9 +65,9 @@ const generateFactoryTourSchema = () => ({
     },
     {
       "@type": "VideoObject",
-      name: "Firm Leather Factory Tour",
+      name: "FirmLeather Factory Tour",
       description:
-        "An immersive look into the craftsmanship and precision of Firm Leather's manufacturing process.",
+        "An immersive look into the craftsmanship and precision of FirmLeather's manufacturing process.",
       url: "https://firmleather.com/factory-tour",
       thumbnailUrl:
         "https://firmleather.com/siteImages/factoryIMages/leather_accessories.avif",

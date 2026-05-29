@@ -14,12 +14,12 @@ const COMPANY_DESCRIPTION = [
   {
     id: "mission",
     content:
-      "Firm Leather is a premium leather manufacturer and exporter founded in 2017 with a mission to craft high-quality, timeless leather products that combine traditional craftsmanship with modern innovation. Specializing in genuine and full-grain leather goods, Firm Leather has grown into a trusted name among wholesale leather buyers and international leather importers.",
+      "FirmLeather is a premium leather manufacturer and exporter founded in 2017 with a mission to craft high-quality, timeless leather products that combine traditional craftsmanship with modern innovation. Specializing in genuine and full-grain leather goods, FirmLeather has grown into a trusted name among wholesale leather buyers and international leather importers.",
   },
   {
     id: "history",
     content:
-      "The company began as a small leather workshop driven by a passionate artisan craftsman named Tariq, who had a deep appreciation for finely made leather goods and handcrafted leather accessories. From the outset, Firm Leather focused on meticulous attention to detail and superior leather workmanship, quickly earning a reputation for excellence in quality leather manufacturing among local sellers and leather retailers. As demand for premium leather products grew, Tariq's son Zaeem — equipped with a background in computer science and business insight — joined the venture. With his leadership, the company embraced modern leather production technology alongside age-old tanning and crafting techniques to streamline manufacturing and enhance quality control standards. Under his direction, Firm Leather expanded its reach beyond local markets to international leather trade clientele, showcasing its handcrafted leather products at global leather trade shows and exhibitions, and securing bulk leather export orders worldwide.",
+      "The company began as a small leather workshop driven by a passionate artisan craftsman named Tariq, who had a deep appreciation for finely made leather goods and handcrafted leather accessories. From the outset, FirmLeather focused on meticulous attention to detail and superior leather workmanship, quickly earning a reputation for excellence in quality leather manufacturing among local sellers and leather retailers. As demand for premium leather products grew, Tariq's son Zaeem — equipped with a background in computer science and business insight — joined the venture. With his leadership, the company embraced modern leather production technology alongside age-old tanning and crafting techniques to streamline manufacturing and enhance quality control standards. Under his direction, FirmLeather expanded its reach beyond local markets to international leather trade clientele, showcasing its handcrafted leather products at global leather trade shows and exhibitions, and securing bulk leather export orders worldwide.",
   },
 ];
 
@@ -41,7 +41,7 @@ const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": "https://firmleather.com/#organization",
-  name: "Firm Leather",
+  name: "FirmLeather",
   url: "https://firmleather.com",
   logo: "https://firmleather.com/site-logo/favicon.svg",
   description: ABOUT_CONFIG.mainHeading,

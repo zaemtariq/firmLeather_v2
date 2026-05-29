@@ -31,7 +31,7 @@ const ADDRESS_INFO = {
  * @type {Object}
  */
 const PHONE_INFO = {
-  main: "+1 (503) 555-0123",
+  main: "+92 334 3000580",
   availability: "Mon-Fri, 9am - 5pm PST",
 };
 

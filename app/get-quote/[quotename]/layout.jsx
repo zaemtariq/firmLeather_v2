@@ -14,8 +14,8 @@ export async function generateMetadata({ params }) {
     ? `Request Quote for ${product.title}`
     : "Request a Leather Manufacturing Quote";
   const description = product
-    ? `Request pricing, sample details, minimum order quantity, and private label options for ${product.title} from Firm Leather.`
-    : "Request wholesale pricing, samples, custom leather manufacturing, private label production, and export order details from Firm Leather.";
+    ? `Request pricing, sample details, minimum order quantity, and private label options for ${product.title} from FirmLeather.`
+    : "Request wholesale pricing, samples, custom leather manufacturing, private label production, and export order details from FirmLeather.";
   const canonical = `/get-quote/${quotename || "general"}`;
   const image = product ? getProductImage(product) : defaultImage;
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
     title,
     description,
     keywords: [
-      "Firm Leather quote",
+      "FirmLeather quote",
       "leather manufacturing quote",
       "wholesale leather pricing",
       "private label leather production",
@@ -33,10 +33,10 @@ export async function generateMetadata({ params }) {
     ].filter(Boolean),
     alternates: { canonical },
     openGraph: {
-      title: `${title} | Firm Leather`,
+      title: `${title} | FirmLeather`,
       description,
       url: canonical,
-      siteName: "Firm Leather",
+      siteName: "FirmLeather",
       type: "website",
       locale: "en_US",
       images: [
@@ -44,13 +44,13 @@ export async function generateMetadata({ params }) {
           url: image,
           width: 1200,
           height: 630,
-          alt: product?.title || "Firm Leather quote request",
+          alt: product?.title || "FirmLeather quote request",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Firm Leather`,
+      title: `${title} | FirmLeather`,
       description,
       images: [image],
     },

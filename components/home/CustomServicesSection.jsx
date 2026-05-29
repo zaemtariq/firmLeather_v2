@@ -5,7 +5,7 @@ import { Factory, PenTool, CheckCircle2 } from "lucide-react";
 const SERVICES = [
   {
     id: "manufacturing",
-    title: "Manufacturing For Brands",
+    title: "Manufacturing for Brands",
     icon: Factory,
     image: "/siteImages/factoryIMages/leather_manufacturer.jpg",
     description:
@@ -19,7 +19,7 @@ const SERVICES = [
   },
   {
     id: "customization",
-    title: "Customized For You",
+    title: "Customized for You",
     icon: PenTool,
     image: "/siteImages/factoryIMages/cumtomize_for_you.jpg",
     description:
@@ -44,11 +44,11 @@ export default function CustomServicesSection() {
           </span>
 
           <h2 className="mt-4 text-4xl text-amber-800 font-bold tracking-tight md:text-5xl">
-            Beyond Off-The-Shelf Leather
+            Beyond Off-the-Shelf Leather
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-stone-400">
-            We don’t just manufacture leather products — we help brands and
+            We do not just manufacture leather products; we help brands and
             individuals build premium experiences through reliable craftsmanship
             and customization.
           </p>

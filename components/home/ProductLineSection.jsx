@@ -22,7 +22,17 @@ const PRODUCT_LINE_SCHEMA = {
   "@type": "ItemList",
   name: "FirmLeather Product Line",
   description:
-    "Complete leather product line merging heritage with innovation for versatile applications",
+    "Complete leather product line, merging heritage craftsmanship with modern innovation for versatile applications",
+  keywords: [
+    "finished leather",
+    "leather jackets",
+    "cowboy chaps",
+    "leather belts",
+    "leather wallets",
+    "RFID-blocking wallets",
+    "golf gloves",
+    "baseball batting gloves",
+  ],
   itemListElement: (PRODUCT_LINE || []).map((item, index) => ({
     "@type": "Product",
     position: index + 1,

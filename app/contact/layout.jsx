@@ -1,10 +1,10 @@
 export const metadata = {
   metadataBase: new URL("https://firmleather.com"),
-  title: "Contact Firm Leather | Leather Manufacturing Inquiries",
+  title: "Contact FirmLeather | Leather Manufacturing Inquiries",
   description:
-    "Contact Firm Leather for wholesale leather products, private label leather manufacturing, finished leather, apparel, accessories, sports gear, samples, and export inquiries.",
+    "Contact FirmLeather for wholesale leather products, private label leather manufacturing, finished leather, apparel, accessories, sports gear, samples, and export inquiries.",
   keywords: [
-    "contact Firm Leather",
+    "contact FirmLeather",
     "leather manufacturing inquiry",
     "wholesale leather contact",
     "private label leather manufacturer",
@@ -13,10 +13,10 @@ export const metadata = {
     "Sialkot leather manufacturer",
     "Pakistan leather exporter",
   ],
-  applicationName: "Firm Leather",
-  authors: [{ name: "Firm Leather" }],
-  creator: "Firm Leather",
-  publisher: "Firm Leather",
+  applicationName: "FirmLeather",
+  authors: [{ name: "FirmLeather" }],
+  creator: "FirmLeather",
+  publisher: "FirmLeather",
   icons: {
     icon: "/site-logo/favicon.svg",
   },
@@ -24,11 +24,11 @@ export const metadata = {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Contact Firm Leather | Leather Manufacturing Inquiries",
+    title: "Contact FirmLeather | Leather Manufacturing Inquiries",
     description:
-      "Reach Firm Leather for wholesale leather goods, private label production, samples, and export-ready manufacturing inquiries.",
+      "Reach FirmLeather for wholesale leather goods, private label production, samples, and export-ready manufacturing inquiries.",
     url: "/contact",
-    siteName: "Firm Leather",
+    siteName: "FirmLeather",
     type: "website",
     locale: "en_US",
     images: [
@@ -36,15 +36,15 @@ export const metadata = {
         url: "/siteImages/factoryIMages/partner_us.jpg",
         width: 1200,
         height: 630,
-        alt: "Contact Firm Leather for leather manufacturing inquiries",
+        alt: "Contact FirmLeather for leather manufacturing inquiries",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Firm Leather | Leather Manufacturing Inquiries",
+    title: "Contact FirmLeather | Leather Manufacturing Inquiries",
     description:
-      "Contact Firm Leather for wholesale leather goods, private label production, samples, and export inquiries.",
+      "Contact FirmLeather for wholesale leather goods, private label production, samples, and export inquiries.",
     images: ["/siteImages/factoryIMages/partner_us.jpg"],
   },
   robots: {
